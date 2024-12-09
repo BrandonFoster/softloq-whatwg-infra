@@ -1,0 +1,8 @@
+#ifndef SOFTLOQ_WHATWG_PRIMITIVE_BOOL_HPP
+#define SOFTLOQ_WHATWG_PRIMITIVE_BOOL_HPP
+
+namespace Softloq::WHATWG
+{
+}
+
+#endif

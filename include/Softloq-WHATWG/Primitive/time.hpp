@@ -1,0 +1,8 @@
+#ifndef SOFTLOQ_WHATWG_PRIMITIVE_TIME_HPP
+#define SOFTLOQ_WHATWG_PRIMITIVE_TIME_HPP
+
+namespace Softloq::WHATWG
+{
+}
+
+#endif
