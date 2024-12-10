@@ -6,6 +6,7 @@ namespace Softloq::WHATWG
     SOFTLOQ_WHATWG_INFRA_API Bool::Bool(const Bool &boolean) : value(boolean.value) {}
     SOFTLOQ_WHATWG_INFRA_API Bool::Bool(const bool value) : value(value) {}
     SOFTLOQ_WHATWG_INFRA_API Bool::Bool(Bool &&boolean) : value(std::move(boolean.value)) {}
+    SOFTLOQ_WHATWG_INFRA_API Bool::~Bool() {}
     SOFTLOQ_WHATWG_INFRA_API Bool &Bool::operator=(const Bool &boolean)
     {
         Bool::value = boolean.value;

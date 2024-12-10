@@ -14,6 +14,7 @@ namespace Softloq::WHATWG
         SOFTLOQ_WHATWG_INFRA_API Bool(const Bool &boolean);
         SOFTLOQ_WHATWG_INFRA_API Bool(const bool value);
         SOFTLOQ_WHATWG_INFRA_API Bool(Bool &&boolean);
+        SOFTLOQ_WHATWG_INFRA_API ~Bool();
         SOFTLOQ_WHATWG_INFRA_API Bool &operator=(const Bool &boolean);
         SOFTLOQ_WHATWG_INFRA_API Bool &operator=(const bool value);
         SOFTLOQ_WHATWG_INFRA_API Bool &operator=(Bool &&boolean);
