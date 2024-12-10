@@ -19,7 +19,7 @@ namespace Softloq::WHATWG
         SOFTLOQ_WHATWG_INFRA_API Bool &operator=(const bool value);
         SOFTLOQ_WHATWG_INFRA_API Bool &operator=(Bool &&boolean);
 
-        SOFTLOQ_WHATWG_INFRA_API inline const Type getType() const override { return Type::Bool; }
+        SOFTLOQ_WHATWG_INFRA_API inline const PrimitiveType getPrimitiveType() const override { return PrimitiveType::Bool; }
         SOFTLOQ_WHATWG_INFRA_API friend std::ostream &operator<<(std::ostream &out, const Bool boolean);
 
         SOFTLOQ_WHATWG_INFRA_API inline constexpr operator bool() const { return value; }

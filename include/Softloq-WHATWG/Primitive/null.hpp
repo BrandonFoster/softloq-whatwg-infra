@@ -10,7 +10,7 @@ namespace Softloq::WHATWG
     class Null : public Primitive
     {
     public:
-        SOFTLOQ_WHATWG_INFRA_API inline const Type getType() const override { return Type::Null; }
+        SOFTLOQ_WHATWG_INFRA_API inline const PrimitiveType getPrimitiveType() const override { return PrimitiveType::Null; }
         SOFTLOQ_WHATWG_INFRA_API friend std::ostream &operator<<(std::ostream &out, const Null null);
     };
 }
