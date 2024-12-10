@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['null_0',['Null',['../d0/dca/classSoftloq_1_1WHATWG_1_1Null.html',1,'Softloq::WHATWG']]]
+  ['libmacro_2ehpp_0',['libmacro.hpp',['../d4/d46/libmacro_8hpp.html',1,'']]]
 ];

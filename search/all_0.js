@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['libmacro_2ehpp_0',['libmacro.hpp',['../d4/d46/libmacro_8hpp.html',1,'']]]
+  ['bool_0',['Bool',['../d8/dcc/classSoftloq_1_1WHATWG_1_1Bool.html',1,'Softloq::WHATWG']]]
 ];

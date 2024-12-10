@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['null_0',['Null',['../d0/dca/classSoftloq_1_1WHATWG_1_1Null.html',1,'Softloq::WHATWG']]]
+  ['bool_0',['Bool',['../d8/dcc/classSoftloq_1_1WHATWG_1_1Bool.html',1,'Softloq::WHATWG']]]
 ];
