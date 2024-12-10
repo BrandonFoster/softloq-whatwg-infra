@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Softloq WHATWG Infra: Softloq-WHATWG/Primitive/codepoint.hpp Source File</title>
+<title>Softloq WHATWG Infra: Softloq::WHATWG::Primitive Class Reference</title>
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
@@ -63,7 +63,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('de/df9/codepoint_8hpp_source.html','../../'); initResizable(); });
+$(document).ready(function(){initNavTree('d5/dd4/classSoftloq_1_1WHATWG_1_1Primitive.html','../../'); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -89,25 +89,54 @@ $(document).ready(function(){initNavTree('de/df9/codepoint_8hpp_source.html','..
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">codepoint.hpp</div></div>
+  <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="../../d1/d32/classSoftloq_1_1WHATWG_1_1Primitive-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Softloq::WHATWG::Primitive Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef SOFTLOQ_WHATWG_PRIMITIVE_CODEPOINT_HPP</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define SOFTLOQ_WHATWG_PRIMITIVE_CODEPOINT_HPP</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;Softloq-WHATWG/Primitive/abstract.hpp&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">namespace </span>Softloq::WHATWG</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>{</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>}</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#endif</span></div>
-</div><!-- fragment --></div><!-- contents -->
+<div class="dynheader">
+Inheritance diagram for Softloq::WHATWG::Primitive:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="../../d5/dd4/classSoftloq_1_1WHATWG_1_1Primitive.png" usemap="#Softloq::WHATWG::Primitive_map" alt=""/>
+  <map id="Softloq::WHATWG::Primitive_map" name="Softloq::WHATWG::Primitive_map">
+<area href="../../d0/dca/classSoftloq_1_1WHATWG_1_1Null.html" alt="Softloq::WHATWG::Null" shape="rect" coords="0,56,166,80"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:aa5e16e8f4a3e1d8d3323ebf4499a82b7"><td class="memItemLeft" align="right" valign="top"><a id="aa5e16e8f4a3e1d8d3323ebf4499a82b7" name="aa5e16e8f4a3e1d8d3323ebf4499a82b7"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>Type</b> { <br />
+&#160;&#160;<b>Null</b>
+, <b>Bool</b>
+, <b>Number</b>
+, <b>Byte</b>
+, <br />
+&#160;&#160;<b>ByteSequence</b>
+, <b>Codepoint</b>
+, <b>String</b>
+, <b>Time</b>
+<br />
+ }</td></tr>
+<tr class="separator:aa5e16e8f4a3e1d8d3323ebf4499a82b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a9ae14a907e264b67117c3ed6731e1ec4"><td class="memItemLeft" align="right" valign="top"><a id="a9ae14a907e264b67117c3ed6731e1ec4" name="a9ae14a907e264b67117c3ed6731e1ec4"></a>
+virtual <a class="el" href="../../d4/d46/libmacro_8hpp.html#a8803ac38b2a896e095b781aed6790846">SOFTLOQ_WHATWG_INFRA_API</a> const Type&#160;</td><td class="memItemRight" valign="bottom"><b>getType</b> () const =0</td></tr>
+<tr class="separator:a9ae14a907e264b67117c3ed6731e1ec4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>Softloq-WHATWG/Primitive/<a class="el" href="../../d1/d35/abstract_8hpp_source.html">abstract.hpp</a></li>
+</ul>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="../../dir_2fbcc8d730cc7a6d95f84baee5c7d661.html">Softloq-WHATWG</a></li><li class="navelem"><a class="el" href="../../dir_df2685bb2ab161ab8fb7cb105adc30d9.html">Primitive</a></li><li class="navelem"><b>codepoint.hpp</b></li>
+    <li class="navelem"><b>Softloq</b></li><li class="navelem"><b>WHATWG</b></li><li class="navelem"><a class="el" href="../../d5/dd4/classSoftloq_1_1WHATWG_1_1Primitive.html">Primitive</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Softloq WHATWG Infra: Softloq-WHATWG/ADT/struct.hpp Source File</title>
+<title>Softloq WHATWG Infra: Softloq-WHATWG/Primitive/abstract.hpp Source File</title>
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
@@ -63,7 +63,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('d4/dad/struct_8hpp_source.html','../../'); initResizable(); });
+$(document).ready(function(){initNavTree('d1/d35/abstract_8hpp_source.html','../../'); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -89,28 +89,45 @@ $(document).ready(function(){initNavTree('d4/dad/struct_8hpp_source.html','../..
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">struct.hpp</div></div>
+  <div class="headertitle"><div class="title">abstract.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef SOFTLOQ_WHATWG_ADT_STRUCT_HPP</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define SOFTLOQ_WHATWG_ADT_STRUCT_HPP</span></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef SOFTLOQ_WHATWG_PRIMITIVE_ABSTRACT_HPP</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define SOFTLOQ_WHATWG_PRIMITIVE_ABSTRACT_HPP</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="../../d4/d46/libmacro_8hpp.html">Softloq-WHATWG/libmacro.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">namespace </span>Softloq::WHATWG</div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>{</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>}</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;Softloq-WHATWG/ADT/struct.tpp&quot;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="../../d5/dd4/classSoftloq_1_1WHATWG_1_1Primitive.html">    8</a></span>    <span class="keyword">class </span><a class="code hl_class" href="../../d5/dd4/classSoftloq_1_1WHATWG_1_1Primitive.html">Primitive</a></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>        <span class="keyword">enum class</span> Type</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>        {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>            <a class="code hl_class" href="../../d0/dca/classSoftloq_1_1WHATWG_1_1Null.html">Null</a>,</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>            Bool,</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>            Number,</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>            Byte,</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>            ByteSequence,</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>            Codepoint,</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>            String,</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>            Time</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        };</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <a class="code hl_define" href="../../d4/d46/libmacro_8hpp.html#a8803ac38b2a896e095b781aed6790846">SOFTLOQ_WHATWG_INFRA_API</a> <span class="keyword">virtual</span> <span class="keyword">const</span> Type getType() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    };</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>}</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassSoftloq_1_1WHATWG_1_1Null_html"><div class="ttname"><a href="../../d0/dca/classSoftloq_1_1WHATWG_1_1Null.html">Softloq::WHATWG::Null</a></div><div class="ttdef"><b>Definition:</b> null.hpp:12</div></div>
+<div class="ttc" id="aclassSoftloq_1_1WHATWG_1_1Primitive_html"><div class="ttname"><a href="../../d5/dd4/classSoftloq_1_1WHATWG_1_1Primitive.html">Softloq::WHATWG::Primitive</a></div><div class="ttdef"><b>Definition:</b> abstract.hpp:9</div></div>
 <div class="ttc" id="alibmacro_8hpp_html"><div class="ttname"><a href="../../d4/d46/libmacro_8hpp.html">libmacro.hpp</a></div><div class="ttdoc">Shared|Static Library Macro.</div></div>
+<div class="ttc" id="alibmacro_8hpp_html_a8803ac38b2a896e095b781aed6790846"><div class="ttname"><a href="../../d4/d46/libmacro_8hpp.html#a8803ac38b2a896e095b781aed6790846">SOFTLOQ_WHATWG_INFRA_API</a></div><div class="ttdeci">#define SOFTLOQ_WHATWG_INFRA_API</div><div class="ttdoc">Static|Shared Build Macro.</div><div class="ttdef"><b>Definition:</b> libmacro.hpp:59</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="../../dir_2fbcc8d730cc7a6d95f84baee5c7d661.html">Softloq-WHATWG</a></li><li class="navelem"><a class="el" href="../../dir_275dad98f7b600191e303f26960901bd.html">ADT</a></li><li class="navelem"><b>struct.hpp</b></li>
+    <li class="navelem"><a class="el" href="../../dir_2fbcc8d730cc7a6d95f84baee5c7d661.html">Softloq-WHATWG</a></li><li class="navelem"><a class="el" href="../../dir_df2685bb2ab161ab8fb7cb105adc30d9.html">Primitive</a></li><li class="navelem"><b>abstract.hpp</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
