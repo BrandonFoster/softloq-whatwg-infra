@@ -3,8 +3,17 @@
 
 #include "Softloq-WHATWG/Primitive/abstract.hpp"
 
+#include <cstdlib>
+#include <iostream>
+
 namespace Softloq::WHATWG
 {
+    class Null : public Primitive
+    {
+    public:
+        SOFTLOQ_WHATWG_INFRA_API inline const Type getType() const override { return Type::Null; }
+        SOFTLOQ_WHATWG_INFRA_API friend std::ostream &operator<<(std::ostream &out, const Null null);
+    };
 }
 
 #endif
