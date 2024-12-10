@@ -3,8 +3,7 @@
 
 #include "Softloq-WHATWG/Primitive/abstract.hpp"
 
-#include <cstdlib>
-#include <iostream>
+#include <ostream>
 
 namespace Softloq::WHATWG
 {
