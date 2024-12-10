@@ -5,21 +5,22 @@
 
 namespace Softloq::WHATWG
 {
+    enum class PrimitiveType
+    {
+        Null,
+        Bool,
+        Number,
+        Byte,
+        ByteSequence,
+        Codepoint,
+        String,
+        Time
+    };
+
     class Primitive
     {
     public:
-        enum class Type
-        {
-            Null,
-            Bool,
-            Number,
-            Byte,
-            ByteSequence,
-            Codepoint,
-            String,
-            Time
-        };
-        SOFTLOQ_WHATWG_INFRA_API virtual const Type getType() const = 0;
+        SOFTLOQ_WHATWG_INFRA_API virtual const PrimitiveType getPrimitiveType() const = 0;
     };
 }
 
