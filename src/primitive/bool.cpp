@@ -1,3 +1,9 @@
+/**
+ * @file bool.cpp
+ * @author Brandon Foster (https://github.com/BrandonFoster)
+ * @brief Implementation of the WHATWG infra bool primitive class.
+ * @version 1.0.0 */
+
 #include "softloq/whatwg/infra/primitive/bool.hpp"
 
 namespace softloq::whatwg::infra
