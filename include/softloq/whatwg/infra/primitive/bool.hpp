@@ -1,7 +1,7 @@
 /**
  * @file bool.hpp
  * @author Brandon Foster (https://github.com/BrandonFoster)
- * @brief Contains the WHATWG infra bool primitive class.
+ * @brief Declaration of the WHATWG infra bool primitive class.
  * @version 1.0.0 */
 
 #ifndef SOFTLOQ_WHATWG_INFRA_PRIMITIVE_BOOL_HPP
@@ -28,21 +28,21 @@ namespace softloq::whatwg::infra
         // Constructors //
 
         /** @brief constructs a WHATWG infra bool primitive with the value false. */
-        SOFTLOQ_WHATWG_INFRA_API boolean();
+        SOFTLOQ_WHATWG_INFRA_API boolean() noexcept;
         /**
          * @brief constructs a WHATWG infra bool primitive from a value.
          * @param value the value that will be used. */
-        SOFTLOQ_WHATWG_INFRA_API boolean(const bool value);
+        SOFTLOQ_WHATWG_INFRA_API boolean(const bool value) noexcept;
         /**
          * @brief constructs a WHATWG infra bool primitive from the copy of another.
          * @param src the infra bool primitive that will be copied. */
-        SOFTLOQ_WHATWG_INFRA_API boolean(const boolean& src);
+        SOFTLOQ_WHATWG_INFRA_API boolean(const boolean& src) noexcept;
         /**
          * @brief constructs a WHATWG infra bool primitive from the L-value of another.
          * @param src the infra bool primitive that will be moved. */
-        SOFTLOQ_WHATWG_INFRA_API boolean(boolean&& src);
+        SOFTLOQ_WHATWG_INFRA_API boolean(boolean&& src) noexcept;
         /** @brief applies default destructor. */
-        SOFTLOQ_WHATWG_INFRA_API ~boolean();
+        SOFTLOQ_WHATWG_INFRA_API ~boolean() noexcept;
 
         //--------------//
 
@@ -51,22 +51,22 @@ namespace softloq::whatwg::infra
         /**
          * @brief assigns a WHATWG infra bool primitive from a value.
          * @param value the value that will be used. */
-        SOFTLOQ_WHATWG_INFRA_API boolean& operator=(const bool value);
+        SOFTLOQ_WHATWG_INFRA_API boolean& operator=(const bool value) noexcept;
         /**
          * @brief assigns a WHATWG infra bool primitive from the copy of another.
          * @param src the infra bool primitive that will be copied. */
-        SOFTLOQ_WHATWG_INFRA_API boolean& operator=(const boolean& src);
+        SOFTLOQ_WHATWG_INFRA_API boolean& operator=(const boolean& src) noexcept;
         /**
          * @brief assigns a WHATWG infra bool primitive from the L-value of another.
          * @param src the infra bool primitive that will be moved. */
-        SOFTLOQ_WHATWG_INFRA_API boolean& operator=(boolean&& src);
+        SOFTLOQ_WHATWG_INFRA_API boolean& operator=(boolean&& src) noexcept;
 
         //-------------//
 
         // Conversions //
 
         /** @brief gets the C++ bool representation. */
-        SOFTLOQ_WHATWG_INFRA_API operator bool() const;
+        SOFTLOQ_WHATWG_INFRA_API operator bool() const noexcept;
 
         //-------------//
 

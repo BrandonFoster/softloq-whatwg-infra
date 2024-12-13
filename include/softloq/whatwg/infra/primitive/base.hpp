@@ -1,7 +1,7 @@
 /**
  * @file base.hpp
  * @author Brandon Foster (https://github.com/BrandonFoster)
- * @brief Contains the WHATWG infra primitive base class.
+ * @brief Declaration of the WHATWG infra primitive base class.
  * @version 1.0.0 */
 
 #ifndef SOFTLOQ_WHATWG_INFRA_PRIMITIVE_BASE_HPP
