@@ -14,7 +14,7 @@ namespace softloq::whatwg::infra
 {
 /** @brief WHATWG infra primitive types */
 enum class primitive_type { null, boolean, number, byte, byte_sequence, code_point, string, time };
-/** @brief WHATWG infra primitive base class */
+/** @brief WHATWG infra primitive base class. Abstract C++ class. */
 class primitive_base
 {
 public:
