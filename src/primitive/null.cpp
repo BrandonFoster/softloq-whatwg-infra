@@ -6,12 +6,12 @@
 
 #include "softloq/whatwg/infra/primitive/null.hpp"
 
-namespace softloq::whatwg::infra
+namespace softloq::whatwg
 {
 // WHATWG primitive base overrides //
 
-SOFTLOQ_WHATWG_INFRA_API const primitive_type null::primitive_type() const noexcept { return primitive_type::null; }
-SOFTLOQ_WHATWG_INFRA_API void null::print(std::ostream& out) const noexcept {}
+SOFTLOQ_WHATWG_INFRA_API const infra_primitive_type infra_null::primitive_type() const noexcept { return infra_primitive_type::infra_null; }
+SOFTLOQ_WHATWG_INFRA_API void infra_null::print(std::ostream& out) const noexcept {}
 
 //---------------------------------//
 }

@@ -7,7 +7,7 @@
 #ifndef SOFTLOQ_WHATWG_INFRA_PRIMITIVE_NUMBER_HPP
 #define SOFTLOQ_WHATWG_INFRA_PRIMITIVE_NUMBER_HPP
 
-#include "softloq/whatwg/infra/primitive/signed.hpp"
-#include "softloq/whatwg/infra/primitive/unsigned.hpp"
+#include "softloq/whatwg/infra/primitive/int.hpp"
+#include "softloq/whatwg/infra/primitive/uint.hpp"
 
 #endif

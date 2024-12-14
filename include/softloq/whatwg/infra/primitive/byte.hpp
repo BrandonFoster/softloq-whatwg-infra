@@ -7,17 +7,17 @@
 #ifndef SOFTLOQ_WHATWG_INFRA_PRIMITIVE_BYTE_HPP
 #define SOFTLOQ_WHATWG_INFRA_PRIMITIVE_BYTE_HPP
 
-#include "softloq/whatwg/infra/primitive/unsigned.hpp"
+#include "softloq/whatwg/infra/primitive/uint.hpp"
 
-namespace softloq::whatwg::infra
+namespace softloq::whatwg
 {   /** @brief WHATWG infra byte primitive class */
-    class byte: public primitive_base
+    class infra_byte: public infra_primitive_base
     {
     public:
         // WHATWG primitive base overrides //
 
-        /** @brief gets the primitive type of the class. returns infra::primitive_type::byte. */
-        SOFTLOQ_WHATWG_INFRA_API const infra::primitive_type primitive_type() const noexcept override;
+        /** @brief gets the primitive type of the class. returns infra_primitive_type::infra_byte. */
+        SOFTLOQ_WHATWG_INFRA_API const infra_primitive_type primitive_type() const noexcept override;
         /**
          * @brief prints the WHATWG infra representation of the byte primitive to the outstream.
          * @param out the outstream that will be used. */
@@ -28,21 +28,21 @@ namespace softloq::whatwg::infra
         // Constructors //
 
         /** @brief constructs a WHATWG infra byte primitive with the value 0x00. */
-        SOFTLOQ_WHATWG_INFRA_API byte() noexcept;
+        SOFTLOQ_WHATWG_INFRA_API infra_byte() noexcept;
         /**
          * @brief constructs a WHATWG infra byte primitive from a value.
          * @param value the value that will be used. */
-        SOFTLOQ_WHATWG_INFRA_API byte(const unsigned8& value) noexcept;
+        SOFTLOQ_WHATWG_INFRA_API infra_byte(const infra_uint8& value) noexcept;
         /**
          * @brief constructs a WHATWG infra byte primitive from the copy of another.
          * @param src the infra byte primitive that will be copied. */
-        SOFTLOQ_WHATWG_INFRA_API byte(const byte& src) noexcept;
+        SOFTLOQ_WHATWG_INFRA_API infra_byte(const infra_byte& src) noexcept;
         /**
          * @brief constructs a WHATWG infra byte primitive from the L-value of another.
          * @param src the infra byte primitive that will be moved. */
-        SOFTLOQ_WHATWG_INFRA_API byte(byte&& src) noexcept;
+        SOFTLOQ_WHATWG_INFRA_API infra_byte(infra_byte&& src) noexcept;
         /** @brief applies default destructor. */
-        SOFTLOQ_WHATWG_INFRA_API ~byte() noexcept;
+        SOFTLOQ_WHATWG_INFRA_API ~infra_byte() noexcept;
 
         //--------------//
 
@@ -51,15 +51,15 @@ namespace softloq::whatwg::infra
         /**
          * @brief assigns a WHATWG infra byte primitive from a value.
          * @param value the value that will be used. */
-        SOFTLOQ_WHATWG_INFRA_API byte& operator=(const unsigned8& value) noexcept;
+        SOFTLOQ_WHATWG_INFRA_API infra_byte& operator=(const infra_uint8& value) noexcept;
         /**
          * @brief assigns a WHATWG infra bool primitive from the copy of another.
          * @param src the infra byte primitive that will be copied. */
-        SOFTLOQ_WHATWG_INFRA_API byte& operator=(const byte& src) noexcept;
+        SOFTLOQ_WHATWG_INFRA_API infra_byte& operator=(const infra_byte& src) noexcept;
         /**
          * @brief assigns a WHATWG infra byte primitive from the L-value of another.
          * @param src the infra byte primitive that will be moved. */
-        SOFTLOQ_WHATWG_INFRA_API byte& operator=(byte&& src) noexcept;
+        SOFTLOQ_WHATWG_INFRA_API infra_byte& operator=(infra_byte&& src) noexcept;
 
         //-------------//
 
@@ -68,12 +68,12 @@ namespace softloq::whatwg::infra
         /** @brief gets the C++ 8-bit unsigned integer representation. */
         SOFTLOQ_WHATWG_INFRA_API operator std::uint8_t() const noexcept;
         /** @brief gets the WHATWG infra 8-bit unsigned integer representation. */
-        SOFTLOQ_WHATWG_INFRA_API operator unsigned8() const noexcept;
+        SOFTLOQ_WHATWG_INFRA_API operator infra_uint8() const noexcept;
 
         //-------------//
 
     private:
-        unsigned8 value;
+        infra_uint8 value;
     };
 }
 

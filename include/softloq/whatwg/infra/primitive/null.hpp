@@ -9,16 +9,16 @@
 
 #include "softloq/whatwg/infra/primitive/base.hpp"
 
-namespace softloq::whatwg::infra
+namespace softloq::whatwg
 {
 /** @brief WHATWG infra null primitive class */
-class null: public primitive_base
+class infra_null: public infra_primitive_base
 {
 public:
     // WHATWG primitive base overrides //
 
-    /** @brief gets the primitive type of the class. returns infra::primitive_type::null. */
-    SOFTLOQ_WHATWG_INFRA_API const infra::primitive_type primitive_type() const noexcept override;
+    /** @brief gets the primitive type of the class. returns infra_primitive_type::infra_null. */
+    SOFTLOQ_WHATWG_INFRA_API const infra_primitive_type primitive_type() const noexcept override;
     /**
      * @brief prints the WHATWG infra representation of the null primitive to the outstream.
      * @param out the outstream that will be used. */

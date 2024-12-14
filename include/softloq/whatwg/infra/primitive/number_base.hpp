@@ -9,24 +9,24 @@
 
 #include "softloq/whatwg/infra/primitive/base.hpp"
 
-namespace softloq::whatwg::infra
+namespace softloq::whatwg
 {
 /** @brief WHATWG infra number types */
-enum class number_type { uint8, int8, uint16, int16, uint32, int32, uint64, int64, uint128 };
+enum class infra_number_type { infra_uint8, infra_int8, infra_uint16, infra_int16, infra_uint32, infra_int32, infra_uint64, infra_int64, infra_uint128 };
 
 /** @brief WHATWG infra number primitive base class */
-class number_base: public primitive_base
+class infra_number_base: public infra_primitive_base
 {
 public:
     // WHATWG primitive base overrides //
 
-    /** @brief gets the primitive type of the class. returns infra::primitive_type::number. */
-    SOFTLOQ_WHATWG_INFRA_API const infra::primitive_type primitive_type() const noexcept override;
+    /** @brief gets the primitive type of the class. returns infra_primitive_type::infra_number. */
+    SOFTLOQ_WHATWG_INFRA_API const infra_primitive_type primitive_type() const noexcept override;
 
     //---------------------------------//
 
     /** @brief gets the number type of the class. */
-    SOFTLOQ_WHATWG_INFRA_API virtual const number_type number_type() const noexcept = 0;
+    SOFTLOQ_WHATWG_INFRA_API virtual const infra_number_type number_type() const noexcept = 0;
 };
 }
 

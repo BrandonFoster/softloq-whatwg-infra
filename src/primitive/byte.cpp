@@ -8,37 +8,37 @@
 
 #include <iomanip>
 
-namespace softloq::whatwg::infra
+namespace softloq::whatwg
 {
 // WHATWG primitive base overrides //
 
-SOFTLOQ_WHATWG_INFRA_API const primitive_type byte::primitive_type() const noexcept { return primitive_type::byte; }
-SOFTLOQ_WHATWG_INFRA_API void byte::print(std::ostream& out) const noexcept { out << "0x" << std::hex << std::uppercase << std::setw(2) << std::setfill('0') << value; }
+SOFTLOQ_WHATWG_INFRA_API const infra_primitive_type infra_byte::primitive_type() const noexcept { return infra_primitive_type::infra_byte; }
+SOFTLOQ_WHATWG_INFRA_API void infra_byte::print(std::ostream& out) const noexcept { out << "0x" << std::hex << std::uppercase << std::setw(2) << std::setfill('0') << value; }
 
 //---------------------------------//
 
 // Constructors //
 
-SOFTLOQ_WHATWG_INFRA_API byte::byte() noexcept : value(0x00) {}
-SOFTLOQ_WHATWG_INFRA_API byte::byte(const unsigned8& value) noexcept : value(value) {}
-SOFTLOQ_WHATWG_INFRA_API byte::byte(const byte& src) noexcept : value(src.value) {}
-SOFTLOQ_WHATWG_INFRA_API byte::byte(byte&& src) noexcept : value(std::move(src.value)) {}
-SOFTLOQ_WHATWG_INFRA_API byte::~byte() noexcept {}
+SOFTLOQ_WHATWG_INFRA_API infra_byte::infra_byte() noexcept : value(0x00) {}
+SOFTLOQ_WHATWG_INFRA_API infra_byte::infra_byte(const infra_uint8& value) noexcept : value(value) {}
+SOFTLOQ_WHATWG_INFRA_API infra_byte::infra_byte(const infra_byte& src) noexcept : value(src.value) {}
+SOFTLOQ_WHATWG_INFRA_API infra_byte::infra_byte(infra_byte&& src) noexcept : value(std::move(src.value)) {}
+SOFTLOQ_WHATWG_INFRA_API infra_byte::~infra_byte() noexcept {}
 
 //--------------//
 
 // Assignments //
 
-SOFTLOQ_WHATWG_INFRA_API byte& byte::operator=(const unsigned8& value) noexcept { byte::value = value; return *this; }
-SOFTLOQ_WHATWG_INFRA_API byte& byte::operator=(const byte& src) noexcept { value = src.value; return *this; }
-SOFTLOQ_WHATWG_INFRA_API byte& byte::operator=(byte&& src) noexcept { value = std::move(src.value); return *this; }
+SOFTLOQ_WHATWG_INFRA_API infra_byte& infra_byte::operator=(const infra_uint8& value) noexcept { infra_byte::value = value; return *this; }
+SOFTLOQ_WHATWG_INFRA_API infra_byte& infra_byte::operator=(const infra_byte& src) noexcept { value = src.value; return *this; }
+SOFTLOQ_WHATWG_INFRA_API infra_byte& infra_byte::operator=(infra_byte&& src) noexcept { value = std::move(src.value); return *this; }
 
 //-------------//
 
 // Conversions //
 
-SOFTLOQ_WHATWG_INFRA_API byte::operator std::uint8_t() const noexcept { return value; }
-SOFTLOQ_WHATWG_INFRA_API byte::operator unsigned8() const noexcept { return value; }
+SOFTLOQ_WHATWG_INFRA_API infra_byte::operator std::uint8_t() const noexcept { return value; }
+SOFTLOQ_WHATWG_INFRA_API infra_byte::operator infra_uint8() const noexcept { return value; }
 
 //-------------//
 }

@@ -6,11 +6,11 @@
 
 #include "softloq/whatwg/infra/primitive/number_base.hpp"
 
-namespace softloq::whatwg::infra
+namespace softloq::whatwg
 {
 // WHATWG primitive base overrides //
 
-SOFTLOQ_WHATWG_INFRA_API const primitive_type number_base::primitive_type() const noexcept { return primitive_type::number; }
+SOFTLOQ_WHATWG_INFRA_API const infra_primitive_type infra_number_base::primitive_type() const noexcept { return infra_primitive_type::infra_number; }
 
 //---------------------------------//
 }
