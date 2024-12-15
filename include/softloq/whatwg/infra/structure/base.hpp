@@ -21,7 +21,7 @@ public:
     /** @brief gets the data structure type of the class. */
     SOFTLOQ_WHATWG_INFRA_API virtual const infra_structure_type structure_type() const noexcept = 0;
     /** @brief enables the output stream operator << on the data structure class. */
-    SOFTLOQ_WHATWG_INFRA_API inline friend std::ostream& operator<<(std::ostream& out, const infra_structure_base& base) noexcept { base.print(out); return out; }
+    SOFTLOQ_WHATWG_INFRA_API friend std::ostream& operator<<(std::ostream& out, const infra_structure_base& base) noexcept;
     /**
      * @brief prints the WHATWG infra representation of the data structure type to the outstream.
      * @param out the outstream that will be used. */

@@ -20,8 +20,11 @@ SOFTLOQ_WHATWG_INFRA_API void infra_byte::print(std::ostream& out) const noexcep
 // Constructors //
 
 SOFTLOQ_WHATWG_INFRA_API infra_byte::infra_byte() noexcept : value(0x00) {}
+SOFTLOQ_WHATWG_INFRA_API infra_byte::infra_byte(const char value) noexcept : value(static_cast<std::uint8_t>(value)) {}
+SOFTLOQ_WHATWG_INFRA_API infra_byte::infra_byte(const std::uint8_t value) noexcept : value(value) {}
 SOFTLOQ_WHATWG_INFRA_API infra_byte::infra_byte(const infra_uint8& value) noexcept : value(value) {}
 SOFTLOQ_WHATWG_INFRA_API infra_byte::infra_byte(const infra_byte& src) noexcept : value(src.value) {}
+SOFTLOQ_WHATWG_INFRA_API infra_byte::infra_byte(infra_uint8&& value) noexcept : value(std::move(value)) {}
 SOFTLOQ_WHATWG_INFRA_API infra_byte::infra_byte(infra_byte&& src) noexcept : value(std::move(src.value)) {}
 SOFTLOQ_WHATWG_INFRA_API infra_byte::~infra_byte() noexcept {}
 
@@ -29,14 +32,18 @@ SOFTLOQ_WHATWG_INFRA_API infra_byte::~infra_byte() noexcept {}
 
 // Assignments //
 
+SOFTLOQ_WHATWG_INFRA_API infra_byte& infra_byte::operator=(const char value) noexcept { infra_byte::value = static_cast<std::uint8_t>(value); return *this; }
+SOFTLOQ_WHATWG_INFRA_API infra_byte& infra_byte::operator=(const std::uint8_t value) noexcept { infra_byte::value = value; return *this; }
 SOFTLOQ_WHATWG_INFRA_API infra_byte& infra_byte::operator=(const infra_uint8& value) noexcept { infra_byte::value = value; return *this; }
 SOFTLOQ_WHATWG_INFRA_API infra_byte& infra_byte::operator=(const infra_byte& src) noexcept { value = src.value; return *this; }
+SOFTLOQ_WHATWG_INFRA_API infra_byte& infra_byte::operator=(infra_uint8&& value) noexcept { infra_byte::value = std::move(value); return *this; }
 SOFTLOQ_WHATWG_INFRA_API infra_byte& infra_byte::operator=(infra_byte&& src) noexcept { value = std::move(src.value); return *this; }
 
 //-------------//
 
 // Conversions //
 
+SOFTLOQ_WHATWG_INFRA_API infra_byte::operator char() const noexcept { return static_cast<char>(value); }
 SOFTLOQ_WHATWG_INFRA_API infra_byte::operator std::uint8_t() const noexcept { return value; }
 SOFTLOQ_WHATWG_INFRA_API infra_byte::operator infra_uint8() const noexcept { return value; }
 
