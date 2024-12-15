@@ -63,13 +63,13 @@ public:
     SOFTLOQ_WHATWG_INFRA_API std::string quoted_string() const noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence lowercase() const noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence uppercase() const noexcept;
-    
-    SOFTLOQ_WHATWG_INFRA_API friend const bool iequal(const infra_byte_sequence& a, const infra_byte_sequence& b) noexcept;
-    SOFTLOQ_WHATWG_INFRA_API friend const bool is_prefix(const infra_byte_sequence& a, const infra_byte_sequence& b) noexcept;
-    SOFTLOQ_WHATWG_INFRA_API friend const bool is_byte_less(const infra_byte_sequence& a, const infra_byte_sequence& b) noexcept;
 
     //-------------------------//
 };
+
+SOFTLOQ_WHATWG_INFRA_API const bool iequal(const infra_byte_sequence& a, const infra_byte_sequence& b) noexcept;
+SOFTLOQ_WHATWG_INFRA_API const bool is_prefix(const infra_byte_sequence& a, const infra_byte_sequence& b) noexcept;
+SOFTLOQ_WHATWG_INFRA_API const bool is_byte_less(const infra_byte_sequence& a, const infra_byte_sequence& b) noexcept;
 }
 
 #endif
