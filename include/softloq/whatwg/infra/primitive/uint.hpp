@@ -4,15 +4,15 @@
  * @brief Declaration of the WHATWG infra unsigned integer primitive classes.
  * @version 1.0.0 */
 
-#ifndef SOFTLOQ_WHATWG_INFRA_PRIMITIVE_UNSIGNED_HPP
-#define SOFTLOQ_WHATWG_INFRA_PRIMITIVE_UNSIGNED_HPP
+#ifndef SOFTLOQ_WHATWG_INFRA_PRIMITIVE_UINT_HPP
+#define SOFTLOQ_WHATWG_INFRA_PRIMITIVE_UINT_HPP
 
 #include "softloq/whatwg/infra/primitive/number_base.hpp"
 
-namespace softloq::whatwg::infra
+namespace softloq::whatwg
 {
 /** @brief WHATWG infra 8-bit unsigned integer primitive base class */
-class unsigned8: public number_base
+class infra_uint8: public infra_number_base
 {
 public:
     // WHATWG primitive base overrides //
@@ -26,29 +26,29 @@ public:
 
     // WHATWG number base overrides //
 
-    /** @brief gets the number type of the class. returns infra::number_type::int8. */
-    SOFTLOQ_WHATWG_INFRA_API const infra::number_type number_type() const noexcept;
+    /** @brief gets the number type of the class. returns infra_number_type::infra_uint8. */
+    SOFTLOQ_WHATWG_INFRA_API const infra_number_type number_type() const noexcept;
 
     //------------------------------//
 
     // Constructors //
 
     /** @brief constructs a WHATWG infra 8-bit unsigned integer primitive with the value 0. */
-    SOFTLOQ_WHATWG_INFRA_API unsigned8() noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_uint8() noexcept;
     /**
      * @brief constructs a WHATWG infra 8-bit unsigned integer primitive from a value.
      * @param value the value that will be used. */
-    SOFTLOQ_WHATWG_INFRA_API unsigned8(const std::uint8_t value) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_uint8(const std::uint8_t value) noexcept;
     /**
      * @brief constructs a WHATWG infra 8-bit unsigned integer primitive from the copy of another.
      * @param src the infra 8-bit unsigned integer primitive that will be copied. */
-    SOFTLOQ_WHATWG_INFRA_API unsigned8(const unsigned8& src) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_uint8(const infra_uint8& src) noexcept;
     /**
      * @brief constructs a WHATWG infra 8-bit unsigned integer primitive from the L-value of another.
      * @param src the infra 8-bit unsigned integer primitive that will be moved. */
-    SOFTLOQ_WHATWG_INFRA_API unsigned8(unsigned8&& src) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_uint8(infra_uint8&& src) noexcept;
     /** @brief applies default destructor. */
-    SOFTLOQ_WHATWG_INFRA_API ~unsigned8() noexcept;
+    SOFTLOQ_WHATWG_INFRA_API ~infra_uint8() noexcept;
 
     //--------------//
 
@@ -57,15 +57,15 @@ public:
     /**
      * @brief assigns a WHATWG infra 8-bit unsigned integer primitive from a value.
      * @param value the value that will be used. */
-    SOFTLOQ_WHATWG_INFRA_API unsigned8& operator=(const std::uint8_t value) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_uint8& operator=(const std::uint8_t value) noexcept;
     /**
      * @brief assigns a WHATWG infra 8-bit unsigned integer primitivefrom the copy of another.
      * @param src the infra 8-bit unsigned integer primitive that will be copied. */
-    SOFTLOQ_WHATWG_INFRA_API unsigned8& operator=(const unsigned8& src) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_uint8& operator=(const infra_uint8& src) noexcept;
     /**
      * @brief assigns a WHATWG infra 8-bit unsigned integer primitive from the L-value of another.
      * @param src the infra 8-bit unsigned integer primitive that will be moved. */
-    SOFTLOQ_WHATWG_INFRA_API unsigned8& operator=(unsigned8&& src) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_uint8& operator=(infra_uint8&& src) noexcept;
 
     //-------------//
 
@@ -81,7 +81,7 @@ private:
 };
 
 /** @brief WHATWG infra 16-bit unsigned integer primitive base class */
-class unsigned16: public number_base
+class infra_uint16: public infra_number_base
 {
 public:
     // WHATWG primitive base overrides //
@@ -95,29 +95,29 @@ public:
 
     // WHATWG number base overrides //
 
-    /** @brief gets the number type of the class. returns infra::number_type::int16. */
-    SOFTLOQ_WHATWG_INFRA_API const infra::number_type number_type() const noexcept;
+    /** @brief gets the number type of the class. returns infra_number_type::infra_uint16. */
+    SOFTLOQ_WHATWG_INFRA_API const infra_number_type number_type() const noexcept;
 
     //------------------------------//
 
     // Constructors //
 
     /** @brief constructs a WHATWG infra 16-bit unsigned integer primitive with the value 0. */
-    SOFTLOQ_WHATWG_INFRA_API unsigned16() noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_uint16() noexcept;
     /**
      * @brief constructs a WHATWG infra 16-bit unsigned integer primitive from a value.
      * @param value the value that will be used. */
-    SOFTLOQ_WHATWG_INFRA_API unsigned16(const std::uint16_t value) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_uint16(const std::uint16_t value) noexcept;
     /**
      * @brief constructs a WHATWG infra 16-bit unsigned integer primitive from the copy of another.
      * @param src the infra 16-bit unsigned integer primitive that will be copied. */
-    SOFTLOQ_WHATWG_INFRA_API unsigned16(const unsigned16& src) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_uint16(const infra_uint16& src) noexcept;
     /**
      * @brief constructs a WHATWG infra 16-bit unsigned integer primitive from the L-value of another.
      * @param src the infra 16-bit unsigned integer primitive that will be moved. */
-    SOFTLOQ_WHATWG_INFRA_API unsigned16(unsigned16&& src) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_uint16(infra_uint16&& src) noexcept;
     /** @brief applies default destructor. */
-    SOFTLOQ_WHATWG_INFRA_API ~unsigned16() noexcept;
+    SOFTLOQ_WHATWG_INFRA_API ~infra_uint16() noexcept;
 
     //--------------//
 
@@ -126,15 +126,15 @@ public:
     /**
      * @brief assigns a WHATWG infra 16-bit unsigned integer primitive from a value.
      * @param value the value that will be used. */
-    SOFTLOQ_WHATWG_INFRA_API unsigned16& operator=(const std::uint16_t value) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_uint16& operator=(const std::uint16_t value) noexcept;
     /**
      * @brief assigns a WHATWG infra 16-bit unsigned integer primitivefrom the copy of another.
      * @param src the infra 16-bit unsigned integer primitive that will be copied. */
-    SOFTLOQ_WHATWG_INFRA_API unsigned16& operator=(const unsigned16& src) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_uint16& operator=(const infra_uint16& src) noexcept;
     /**
      * @brief assigns a WHATWG infra 16-bit unsigned integer primitive from the L-value of another.
      * @param src the infra 16-bit unsigned integer primitive that will be moved. */
-    SOFTLOQ_WHATWG_INFRA_API unsigned16& operator=(unsigned16&& src) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_uint16& operator=(infra_uint16&& src) noexcept;
 
     //-------------//
 
@@ -150,7 +150,7 @@ private:
 };
 
 /** @brief WHATWG infra 32-bit unsigned integer primitive base class */
-class unsigned32: public number_base
+class infra_uint32: public infra_number_base
 {
 public:
     // WHATWG primitive base overrides //
@@ -164,29 +164,29 @@ public:
 
     // WHATWG number base overrides //
 
-    /** @brief gets the number type of the class. returns infra::number_type::int32. */
-    SOFTLOQ_WHATWG_INFRA_API const infra::number_type number_type() const noexcept;
+    /** @brief gets the number type of the class. returns infra_number_type::infra_uint32. */
+    SOFTLOQ_WHATWG_INFRA_API const infra_number_type number_type() const noexcept;
 
     //------------------------------//
 
     // Constructors //
 
     /** @brief constructs a WHATWG infra 32-bit unsigned integer primitive with the value 0. */
-    SOFTLOQ_WHATWG_INFRA_API unsigned32() noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_uint32() noexcept;
     /**
      * @brief constructs a WHATWG infra 32-bit unsigned integer primitive from a value.
      * @param value the value that will be used. */
-    SOFTLOQ_WHATWG_INFRA_API unsigned32(const std::uint32_t value) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_uint32(const std::uint32_t value) noexcept;
     /**
      * @brief constructs a WHATWG infra 32-bit unsigned integer primitive from the copy of another.
      * @param src the infra 32-bit unsigned integer primitive that will be copied. */
-    SOFTLOQ_WHATWG_INFRA_API unsigned32(const unsigned32& src) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_uint32(const infra_uint32& src) noexcept;
     /**
      * @brief constructs a WHATWG infra 32-bit unsigned integer primitive from the L-value of another.
      * @param src the infra 32-bit unsigned integer primitive that will be moved. */
-    SOFTLOQ_WHATWG_INFRA_API unsigned32(unsigned32&& src) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_uint32(infra_uint32&& src) noexcept;
     /** @brief applies default destructor. */
-    SOFTLOQ_WHATWG_INFRA_API ~unsigned32() noexcept;
+    SOFTLOQ_WHATWG_INFRA_API ~infra_uint32() noexcept;
 
     //--------------//
 
@@ -195,15 +195,15 @@ public:
     /**
      * @brief assigns a WHATWG infra 32-bit unsigned integer primitive from a value.
      * @param value the value that will be used. */
-    SOFTLOQ_WHATWG_INFRA_API unsigned32& operator=(const std::uint32_t value) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_uint32& operator=(const std::uint32_t value) noexcept;
     /**
      * @brief assigns a WHATWG infra 32-bit unsigned integer primitivefrom the copy of another.
      * @param src the infra 32-bit unsigned integer primitive that will be copied. */
-    SOFTLOQ_WHATWG_INFRA_API unsigned32& operator=(const unsigned32& src) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_uint32& operator=(const infra_uint32& src) noexcept;
     /**
      * @brief assigns a WHATWG infra 32-bit unsigned integer primitive from the L-value of another.
      * @param src the infra 32-bit unsigned integer primitive that will be moved. */
-    SOFTLOQ_WHATWG_INFRA_API unsigned32& operator=(unsigned32&& src) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_uint32& operator=(infra_uint32&& src) noexcept;
 
     //-------------//
 
@@ -219,7 +219,7 @@ private:
 };
 
 /** @brief WHATWG infra 64-bit unsigned integer primitive base class */
-class unsigned64: public number_base
+class infra_uint64: public infra_number_base
 {
 public:
     // WHATWG primitive base overrides //
@@ -233,29 +233,29 @@ public:
 
     // WHATWG number base overrides //
 
-    /** @brief gets the number type of the class. returns infra::number_type::int64. */
-    SOFTLOQ_WHATWG_INFRA_API const infra::number_type number_type() const noexcept;
+    /** @brief gets the number type of the class. returns infra_number_type::infra_uint64. */
+    SOFTLOQ_WHATWG_INFRA_API const infra_number_type number_type() const noexcept;
 
     //------------------------------//
 
     // Constructors //
 
     /** @brief constructs a WHATWG infra 64-bit unsigned integer primitive with the value 0. */
-    SOFTLOQ_WHATWG_INFRA_API unsigned64() noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_uint64() noexcept;
     /**
      * @brief constructs a WHATWG infra 64-bit unsigned integer primitive from a value.
      * @param value the value that will be used. */
-    SOFTLOQ_WHATWG_INFRA_API unsigned64(const std::uint64_t value) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_uint64(const std::uint64_t value) noexcept;
     /**
      * @brief constructs a WHATWG infra 64-bit unsigned integer primitive from the copy of another.
      * @param src the infra 64-bit unsigned integer primitive that will be copied. */
-    SOFTLOQ_WHATWG_INFRA_API unsigned64(const unsigned64& src) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_uint64(const infra_uint64& src) noexcept;
     /**
      * @brief constructs a WHATWG infra 64-bit unsigned integer primitive from the L-value of another.
      * @param src the infra 64-bit unsigned integer primitive that will be moved. */
-    SOFTLOQ_WHATWG_INFRA_API unsigned64(unsigned64&& src) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_uint64(infra_uint64&& src) noexcept;
     /** @brief applies default destructor. */
-    SOFTLOQ_WHATWG_INFRA_API ~unsigned64() noexcept;
+    SOFTLOQ_WHATWG_INFRA_API ~infra_uint64() noexcept;
 
     //--------------//
 
@@ -264,15 +264,15 @@ public:
     /**
      * @brief assigns a WHATWG infra 64-bit unsigned integer primitive from a value.
      * @param value the value that will be used. */
-    SOFTLOQ_WHATWG_INFRA_API unsigned64& operator=(const std::uint64_t value) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_uint64& operator=(const std::uint64_t value) noexcept;
     /**
      * @brief assigns a WHATWG infra 64-bit unsigned integer primitivefrom the copy of another.
      * @param src the infra 64-bit unsigned integer primitive that will be copied. */
-    SOFTLOQ_WHATWG_INFRA_API unsigned64& operator=(const unsigned64& src) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_uint64& operator=(const infra_uint64& src) noexcept;
     /**
      * @brief assigns a WHATWG infra 64-bit unsigned integer primitive from the L-value of another.
      * @param src the infra 64-bit unsigned integer primitive that will be moved. */
-    SOFTLOQ_WHATWG_INFRA_API unsigned64& operator=(unsigned64&& src) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_uint64& operator=(infra_uint64&& src) noexcept;
 
     //-------------//
 
