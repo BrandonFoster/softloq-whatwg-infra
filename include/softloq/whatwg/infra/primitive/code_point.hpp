@@ -25,6 +25,7 @@ public:
     // Constructors //
 
     SOFTLOQ_WHATWG_INFRA_API infra_code_point() noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_code_point(const std::int32_t value) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_code_point(const infra_uint32& value) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_code_point(infra_uint32&& value) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_code_point(const infra_code_point& src) noexcept;
@@ -35,6 +36,7 @@ public:
 
     // Assignments //
 
+    SOFTLOQ_WHATWG_INFRA_API infra_code_point& operator=(const std::int32_t value) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_code_point& operator=(const infra_uint32& value) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_code_point& operator=(infra_uint32&& value) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_code_point& operator=(const infra_code_point& src) noexcept;

@@ -23,7 +23,7 @@ SOFTLOQ_WHATWG_INFRA_API const infra_number_type infra_uint8::number_type() cons
 // Constructors //
 
 SOFTLOQ_WHATWG_INFRA_API infra_uint8::infra_uint8() noexcept : value(0) {}
-SOFTLOQ_WHATWG_INFRA_API infra_uint8::infra_uint8(const int value) noexcept : value(static_cast<std::uint8_t>(value)) {}
+SOFTLOQ_WHATWG_INFRA_API infra_uint8::infra_uint8(const std::int32_t value) noexcept : value(static_cast<std::uint8_t>(value)) {}
 SOFTLOQ_WHATWG_INFRA_API infra_uint8::infra_uint8(const std::uint8_t value) noexcept : value(value) {}
 SOFTLOQ_WHATWG_INFRA_API infra_uint8::infra_uint8(const infra_uint8& src) noexcept : value(src.value) {}
 SOFTLOQ_WHATWG_INFRA_API infra_uint8::infra_uint8(infra_uint8&& src) noexcept : value(std::move(src.value)) {}
@@ -33,7 +33,7 @@ SOFTLOQ_WHATWG_INFRA_API infra_uint8::~infra_uint8() noexcept {}
 
 // Assignments //
 
-SOFTLOQ_WHATWG_INFRA_API infra_uint8& infra_uint8::operator=(const int value) noexcept { infra_uint8::value = static_cast<std::uint8_t>(value); return *this; }
+SOFTLOQ_WHATWG_INFRA_API infra_uint8& infra_uint8::operator=(const std::int32_t value) noexcept { infra_uint8::value = static_cast<std::uint8_t>(value); return *this; }
 SOFTLOQ_WHATWG_INFRA_API infra_uint8& infra_uint8::operator=(const std::uint8_t value) noexcept { infra_uint8::value = value; return *this; }
 SOFTLOQ_WHATWG_INFRA_API infra_uint8& infra_uint8::operator=(const infra_uint8& src) noexcept { value = src.value; return *this; }
 SOFTLOQ_WHATWG_INFRA_API infra_uint8& infra_uint8::operator=(infra_uint8&& src) noexcept { value = std::move(src.value); return *this; }
@@ -61,7 +61,7 @@ SOFTLOQ_WHATWG_INFRA_API const infra_number_type infra_uint16::number_type() con
 // Constructors //
 
 SOFTLOQ_WHATWG_INFRA_API infra_uint16::infra_uint16() noexcept : value(0) {}
-SOFTLOQ_WHATWG_INFRA_API infra_uint16::infra_uint16(const int value) noexcept : value(static_cast<std::uint16_t>(value)) {}
+SOFTLOQ_WHATWG_INFRA_API infra_uint16::infra_uint16(const std::int32_t value) noexcept : value(static_cast<std::uint16_t>(value)) {}
 SOFTLOQ_WHATWG_INFRA_API infra_uint16::infra_uint16(const std::uint16_t value) noexcept : value(value) {}
 SOFTLOQ_WHATWG_INFRA_API infra_uint16::infra_uint16(const infra_uint16& src) noexcept : value(src.value) {}
 SOFTLOQ_WHATWG_INFRA_API infra_uint16::infra_uint16(infra_uint16&& src) noexcept : value(std::move(src.value)) {}
@@ -71,7 +71,7 @@ SOFTLOQ_WHATWG_INFRA_API infra_uint16::~infra_uint16() noexcept {}
 
 // Assignments //
 
-SOFTLOQ_WHATWG_INFRA_API infra_uint16& infra_uint16::operator=(const int value) noexcept { infra_uint16::value = static_cast<std::uint16_t>(value); return *this; }
+SOFTLOQ_WHATWG_INFRA_API infra_uint16& infra_uint16::operator=(const std::int32_t value) noexcept { infra_uint16::value = static_cast<std::uint16_t>(value); return *this; }
 SOFTLOQ_WHATWG_INFRA_API infra_uint16& infra_uint16::operator=(const std::uint16_t value) noexcept { infra_uint16::value = value; return *this; }
 SOFTLOQ_WHATWG_INFRA_API infra_uint16& infra_uint16::operator=(const infra_uint16& src) noexcept { value = src.value; return *this; }
 SOFTLOQ_WHATWG_INFRA_API infra_uint16& infra_uint16::operator=(infra_uint16&& src) noexcept { value = std::move(src.value); return *this; }

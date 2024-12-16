@@ -22,7 +22,8 @@ SOFTLOQ_WHATWG_INFRA_API void infra_byte_sequence::print(std::ostream& out) cons
 
 // Constructors //
 
-SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence::infra_byte_sequence() noexcept {}
+SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence::infra_byte_sequence() noexcept
+:   container_type{} {}
 SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence::infra_byte_sequence(const std::string& values) noexcept
 {
     std::transform(values.cbegin(), values.cend(), std::back_inserter(*this), [](const char c) { return infra_byte{c}; });
@@ -32,13 +33,9 @@ SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence::infra_byte_sequence(const std::u8s
     std::transform(values.cbegin(), values.cend(), std::back_inserter(*this), [](const std::uint8_t c) { return infra_byte{c}; });
 }
 SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence::infra_byte_sequence(const infra_byte_sequence& src) noexcept
-{
-    std::copy(src.cbegin(), src.cend(), std::back_inserter(*this));
-}
+:   container_type{*static_cast<const container_type*>(&src)} {}
 SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence::infra_byte_sequence(infra_byte_sequence&& src) noexcept
-{
-    *static_cast<container_type*>(this) = std::move(*static_cast<container_type*>(&src));
-}
+:   container_type{std::move(*static_cast<container_type*>(&src))} {}
 SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence::~infra_byte_sequence() noexcept {}
 
 //--------------//
@@ -59,8 +56,7 @@ SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence& infra_byte_sequence::operator=(con
 }
 SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence& infra_byte_sequence::operator=(const infra_byte_sequence& src) noexcept
 {
-    clear();
-    std::copy(src.cbegin(), src.cend(), std::back_inserter(*this));
+    *static_cast<container_type*>(this) = *static_cast<const container_type*>(&src);
     return *this;
 }
 SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence& infra_byte_sequence::operator=(infra_byte_sequence&& src) noexcept

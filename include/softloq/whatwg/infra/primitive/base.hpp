@@ -8,6 +8,7 @@
 #define SOFTLOQ_WHATWG_INFRA_PRIMITIVE_BASE_HPP
 
 #include "softloq/whatwg/infra/lib_macro.hpp"
+
 #include <ostream>
 
 namespace softloq::whatwg
