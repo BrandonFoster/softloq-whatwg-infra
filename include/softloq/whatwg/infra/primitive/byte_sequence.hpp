@@ -1,3 +1,9 @@
+/**
+ * @file byte_sequence.hpp
+ * @author Brandon Foster (https://github.com/BrandonFoster)
+ * @brief Declaration of the WHATWG infra byte sequence primitive class.
+ * @version 1.0.0 */
+
 #ifndef SOFTLOQ_WHATWG_INFRA_PRIMITIVE_BYTE_SEQUENCE_HPP
 #define SOFTLOQ_WHATWG_INFRA_PRIMITIVE_BYTE_SEQUENCE_HPP
 
@@ -6,20 +12,23 @@
 
 namespace softloq::whatwg
 {
+/** @brief WHATWG infra byte sequence primitive class */
 class infra_byte_sequence: public infra_sequence<infra_byte>, public infra_primitive_base
 {
 public:
     using infra_sequence<infra_byte>::infra_sequence;
 
+    // Standard member types //
+
+    using container_type = infra_sequence<infra_byte>;
+
+    //-----------------------//
+    
+
     // WHATWG primitive base overrides //
 
-    /** @brief gets the primitive type of the class. returns infra_primitive_type::infra_byte_sequence. */
     SOFTLOQ_WHATWG_INFRA_API const infra_primitive_type primitive_type() const noexcept override;
-    /** @brief enables the output stream operator << on the byte sequence primitive class. */
     SOFTLOQ_WHATWG_INFRA_API friend std::ostream& operator<<(std::ostream& out, const infra_byte_sequence& sequence) noexcept;
-    /**
-     * @brief prints the WHATWG infra representation of the byte sequence primitive to the outstream.
-     * @param out the outstream that will be used. */
     SOFTLOQ_WHATWG_INFRA_API void print(std::ostream& out) const noexcept override;
 
     //---------------------------------//
@@ -31,28 +40,15 @@ public:
     SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence(const std::u8string& values) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence(const infra_byte_sequence& src) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence(infra_byte_sequence&& src) noexcept;
-    /** @brief applies default destructor. */
     SOFTLOQ_WHATWG_INFRA_API ~infra_byte_sequence() noexcept;
 
     //--------------//
 
     // Assignments //
 
-    /**
-     * @brief assigns a WHATWG infra byte sequence from a value.
-     * @param value the value that will be used. */
     SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence& operator=(const std::string& values) noexcept;
-    /**
-     * @brief assigns a WHATWG infra byte sequence from a value.
-     * @param value the value that will be used. */
     SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence& operator=(const std::u8string& values) noexcept;
-    /**
-     * @brief assigns a WHATWG infra byte sequence from the copy of another.
-     * @param src the byte sequence primative that will be copied. */
     SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence& operator=(const infra_byte_sequence& src) noexcept;
-    /**
-     * @brief assigns a WHATWG infra byte sequence from the L-value of another.
-     * @param src the byte sequence primative that will be moved. */
     SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence& operator=(infra_byte_sequence&& src) noexcept;
 
     //-------------//
