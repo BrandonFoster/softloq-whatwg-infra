@@ -30,7 +30,7 @@ public:
     // Constructors //
 
     SOFTLOQ_WHATWG_INFRA_API infra_int8() noexcept;
-    SOFTLOQ_WHATWG_INFRA_API infra_int8(const int value) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_int8(const std::int32_t value) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_int8(const std::int8_t value) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_int8(const infra_int8& src) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_int8(infra_int8&& src) noexcept;
@@ -40,7 +40,7 @@ public:
 
     // Assignments //
 
-    SOFTLOQ_WHATWG_INFRA_API infra_int8& operator=(const int value) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_int8& operator=(const std::int32_t value) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_int8& operator=(const std::int8_t value) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_int8& operator=(const infra_int8& src) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_int8& operator=(infra_int8&& src) noexcept;
@@ -76,7 +76,7 @@ public:
     // Constructors //
 
     SOFTLOQ_WHATWG_INFRA_API infra_int16() noexcept;
-    SOFTLOQ_WHATWG_INFRA_API infra_int16(const int value) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_int16(const std::int32_t value) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_int16(const std::int16_t value) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_int16(const infra_int16& src) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_int16(infra_int16&& src) noexcept;
@@ -86,7 +86,7 @@ public:
 
     // Assignments //
 
-    SOFTLOQ_WHATWG_INFRA_API infra_int16& operator=(const int value) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_int16& operator=(const std::int32_t value) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_int16& operator=(const std::int16_t value) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_int16& operator=(const infra_int16& src) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_int16& operator=(infra_int16&& src) noexcept;

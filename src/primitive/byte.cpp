@@ -20,7 +20,7 @@ SOFTLOQ_WHATWG_INFRA_API void infra_byte::print(std::ostream& out) const noexcep
 // Constructors //
 
 SOFTLOQ_WHATWG_INFRA_API infra_byte::infra_byte() noexcept : value(0x00) {}
-SOFTLOQ_WHATWG_INFRA_API infra_byte::infra_byte(const int value) noexcept : value(value) {}
+SOFTLOQ_WHATWG_INFRA_API infra_byte::infra_byte(const std::int32_t value) noexcept : value(value) {}
 SOFTLOQ_WHATWG_INFRA_API infra_byte::infra_byte(const infra_uint8& value) noexcept : value(value) {}
 SOFTLOQ_WHATWG_INFRA_API infra_byte::infra_byte(infra_uint8&& value) noexcept : value(std::move(value)) {}
 SOFTLOQ_WHATWG_INFRA_API infra_byte::infra_byte(const infra_byte& src) noexcept : value(src.value) {}
@@ -31,7 +31,7 @@ SOFTLOQ_WHATWG_INFRA_API infra_byte::~infra_byte() noexcept {}
 
 // Assignments //
 
-SOFTLOQ_WHATWG_INFRA_API infra_byte& infra_byte::operator=(const int value) noexcept { infra_byte::value = value; return *this; }
+SOFTLOQ_WHATWG_INFRA_API infra_byte& infra_byte::operator=(const std::int32_t value) noexcept { infra_byte::value = value; return *this; }
 SOFTLOQ_WHATWG_INFRA_API infra_byte& infra_byte::operator=(const infra_uint8& value) noexcept { infra_byte::value = value; return *this; }
 SOFTLOQ_WHATWG_INFRA_API infra_byte& infra_byte::operator=(infra_uint8&& value) noexcept { infra_byte::value = std::move(value); return *this; }
 SOFTLOQ_WHATWG_INFRA_API infra_byte& infra_byte::operator=(const infra_byte& src) noexcept { value = src.value; return *this; }

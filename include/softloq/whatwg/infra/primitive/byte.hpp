@@ -25,7 +25,7 @@ public:
     // Constructors //
 
     SOFTLOQ_WHATWG_INFRA_API infra_byte() noexcept;
-    SOFTLOQ_WHATWG_INFRA_API infra_byte(const int value) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_byte(const std::int32_t value) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_byte(const infra_uint8& value) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_byte(infra_uint8&& value) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_byte(const infra_byte& src) noexcept;
@@ -36,7 +36,7 @@ public:
 
     // Assignments //
 
-    SOFTLOQ_WHATWG_INFRA_API infra_byte& operator=(const int value) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_byte& operator=(const std::int32_t value) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_byte& operator=(const infra_uint8& value) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_byte& operator=(infra_uint8&& value) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_byte& operator=(const infra_byte& src) noexcept;

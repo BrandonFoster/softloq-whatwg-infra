@@ -47,10 +47,14 @@ template <class T> void infra_sequence<T>::print(std::ostream& out) const noexce
 
 // Constructors //
 
-template <class T> infra_sequence<T>::infra_sequence() noexcept : container_type{} {}
-template <class T> infra_sequence<T>::infra_sequence(const std::initializer_list<T>& values) noexcept : container_type(values) {}
-template <class T> infra_sequence<T>::infra_sequence(const infra_sequence& src) noexcept : container_type(*static_cast<const container_type*>(&src)) {}
-template <class T> infra_sequence<T>::infra_sequence(infra_sequence&& src) noexcept : container_type(std::move(*static_cast<container_type*>(&src))) {}
+template <class T> infra_sequence<T>::infra_sequence() noexcept
+:   container_type{} {}
+template <class T> infra_sequence<T>::infra_sequence(const std::initializer_list<T>& values) noexcept
+:   container_type{values} {}
+template <class T> infra_sequence<T>::infra_sequence(const infra_sequence& src) noexcept
+:   container_type{*static_cast<const container_type*>(&src)} {}
+template <class T> infra_sequence<T>::infra_sequence(infra_sequence&& src) noexcept
+:   container_type{std::move(*static_cast<container_type*>(&src))} {}
 template <class T> infra_sequence<T>::~infra_sequence() noexcept {}
 
 //--------------//
@@ -59,7 +63,7 @@ template <class T> infra_sequence<T>::~infra_sequence() noexcept {}
 
 template <class T> infra_sequence<T>& infra_sequence<T>::operator=(const infra_sequence& src) noexcept
 {
-    *static_cast<container_type*>(this) = *static_cast<container_type*>(&src);
+    *static_cast<container_type*>(this) = *static_cast<const container_type*>(&src);
     return *this;
 }
 template <class T> infra_sequence<T>& infra_sequence<T>::operator=(infra_sequence&& src) noexcept
