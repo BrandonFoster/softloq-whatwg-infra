@@ -13,7 +13,7 @@
 namespace softloq::whatwg
 {
 /** @brief WHATWG infra primitive types */
-enum class infra_primitive_type { infra_null, infra_bool, infra_number, infra_byte, infra_byte_sequence, infra_code_point, infra_string, infra_time };
+enum class infra_primitive_type { infra_null, infra_bool, infra_number, infra_byte, infra_byte_sequence, infra_code_unit, infra_code_point, infra_string, infra_time };
 
 /** @brief WHATWG infra primitive base class. Abstract C++ class. */
 class infra_primitive_base
