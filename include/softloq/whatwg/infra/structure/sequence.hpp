@@ -76,7 +76,7 @@ public:
 
     //-------------//
 
-    // Sequence functions //
+    // Member functions //
 
     reference front() noexcept;
     const_reference front() const noexcept;
@@ -91,7 +91,7 @@ public:
     reference operator[](const size_type index) noexcept;
     const_reference operator[](const size_type index) const noexcept;
     
-    //--------------------//
+    //------------------//
 };
 }
 

@@ -70,7 +70,7 @@ template <class T> infra_sequence<T>& infra_sequence<T>::operator=(infra_sequenc
 
 //-------------//
 
-// Sequence functions //
+// Member functions //
 
 template <class T> infra_sequence<T>::reference infra_sequence<T>::front() noexcept { return container_type::front(); }
 template <class T> infra_sequence<T>::const_reference infra_sequence<T>::front() const noexcept { return container_type::front(); }
@@ -85,5 +85,5 @@ template <class T> void infra_sequence<T>::clear() noexcept { container_type::cl
 template <class T> infra_sequence<T>::reference infra_sequence<T>::operator[](const size_type index) noexcept { return container_type::operator[](index); }
 template <class T> infra_sequence<T>::const_reference infra_sequence<T>::operator[](const size_type index) const noexcept { return container_type::operator[](index); }
 
-//--------------------//
+//------------------//
 }

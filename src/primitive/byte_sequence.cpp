@@ -71,7 +71,7 @@ SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence& infra_byte_sequence::operator=(inf
 
 //-------------//
 
-// Byte sequence functions //
+// Member functions //
 
 SOFTLOQ_WHATWG_INFRA_API std::string infra_byte_sequence::byte_string() const noexcept
 {
@@ -121,5 +121,5 @@ SOFTLOQ_WHATWG_INFRA_API const bool is_byte_less(const infra_byte_sequence& a, c
     else return std::equal(a.cbegin(), a.cend(), b.cbegin(), std::less_equal<infra_byte>());
 }
 
-//-------------------------//
+//------------------//
 }

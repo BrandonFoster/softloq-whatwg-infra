@@ -53,7 +53,7 @@ public:
 
     //-------------//
 
-    // Byte sequence functions //
+    // Member functions //
 
     SOFTLOQ_WHATWG_INFRA_API std::string byte_string() const noexcept;
     SOFTLOQ_WHATWG_INFRA_API std::string quoted_string() const noexcept;
