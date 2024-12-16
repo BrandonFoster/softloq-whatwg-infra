@@ -20,12 +20,10 @@ class infra_number_base: public infra_primitive_base
 public:
     // WHATWG primitive base overrides //
 
-    /** @brief gets the primitive type of the class. returns infra_primitive_type::infra_number. */
     SOFTLOQ_WHATWG_INFRA_API const infra_primitive_type primitive_type() const noexcept override;
 
     //---------------------------------//
 
-    /** @brief gets the number type of the class. */
     SOFTLOQ_WHATWG_INFRA_API virtual const infra_number_type number_type() const noexcept = 0;
 };
 }

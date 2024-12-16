@@ -37,7 +37,7 @@ SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence::infra_byte_sequence(const infra_by
 }
 SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence::infra_byte_sequence(infra_byte_sequence&& src) noexcept
 {
-    values = std::move(src.values);
+    *static_cast<container_type*>(this) = std::move(*static_cast<container_type*>(&src));
 }
 SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence::~infra_byte_sequence() noexcept {}
 
@@ -65,20 +65,20 @@ SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence& infra_byte_sequence::operator=(con
 }
 SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence& infra_byte_sequence::operator=(infra_byte_sequence&& src) noexcept
 {
-    values = std::move(src.values);
+    *static_cast<container_type*>(this) = std::move(*static_cast<container_type*>(&src));
     return *this;
 }
 
 //-------------//
 
-// Byte sequence functions //
+// Member functions //
 
 SOFTLOQ_WHATWG_INFRA_API std::string infra_byte_sequence::byte_string() const noexcept
 {
     std::stringstream out;
     auto curr_it = cbegin();
     auto last_it = cend();
-    for(const_reference item: values)
+    for(const_reference item: *this)
     {
         out << item;
         if(++curr_it != last_it) out << " ";
@@ -89,26 +89,26 @@ SOFTLOQ_WHATWG_INFRA_API std::string infra_byte_sequence::quoted_string() const 
 {
     std::stringstream out;
     out << "`";
-    for(const_reference item: values) out << static_cast<char>(item);
+    for(const_reference item: *this) out << static_cast<char>(static_cast<const std::uint8_t>(item));
     out << "`";
     return out.str();
 }
 SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence infra_byte_sequence::lowercase() const noexcept
 {
     infra_byte_sequence sequence;
-    std::transform(cbegin(), cend(), std::back_inserter(sequence), [](const auto& byte) { return std::tolower(byte); });
+    std::transform(cbegin(), cend(), std::back_inserter(sequence), [](const auto& byte) { return std::tolower(static_cast<std::uint8_t>(byte)); });
     return sequence;
 }
 SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence infra_byte_sequence::uppercase() const noexcept
 {
     infra_byte_sequence sequence;
-    std::transform(cbegin(), cend(), std::back_inserter(sequence), [](const auto& byte) { return std::toupper(byte); });
+    std::transform(cbegin(), cend(), std::back_inserter(sequence), [](const auto& byte) { return std::toupper(static_cast<std::uint8_t>(byte)); });
     return sequence;
 }
 
 SOFTLOQ_WHATWG_INFRA_API const bool iequal(const infra_byte_sequence& a, const infra_byte_sequence& b) noexcept
 {
-    return a.size() == b.size() && std::equal(a.cbegin(), a.cend(), b.cbegin(), [](const auto& byte_a, const auto& byte_b) { return std::tolower(byte_a) == std::tolower(byte_b); });
+    return a.size() == b.size() && std::equal(a.cbegin(), a.cend(), b.cbegin(), [](const auto& byte_a, const auto& byte_b) { return std::tolower(static_cast<std::uint8_t>(byte_a)) == std::tolower(static_cast<std::uint8_t>(byte_b)); });
 }
 SOFTLOQ_WHATWG_INFRA_API const bool is_prefix(const infra_byte_sequence& a, const infra_byte_sequence& b) noexcept
 {
@@ -121,5 +121,5 @@ SOFTLOQ_WHATWG_INFRA_API const bool is_byte_less(const infra_byte_sequence& a, c
     else return std::equal(a.cbegin(), a.cend(), b.cbegin(), std::less_equal<infra_byte>());
 }
 
-//-------------------------//
+//------------------//
 }
