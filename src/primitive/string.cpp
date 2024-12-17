@@ -172,20 +172,39 @@ SOFTLOQ_WHATWG_INFRA_API infra_string::size_type infra_string::code_point_size()
 
 SOFTLOQ_WHATWG_INFRA_API const bool infra_string::is_ascii() const
 {
-    return false;
+    for (const auto& point: *static_cast<const code_point_sequence_type*>(this))
+    {
+        if (!point.is_ascii()) return false;
+    }
+    return true;
 }
 SOFTLOQ_WHATWG_INFRA_API const bool infra_string::is_isomorphic() const
 {
-    return false;
+    for (const auto& point: *static_cast<const code_point_sequence_type*>(this))
+    {
+        if (point > 0xFF) return false;
+    }
+    return true;
 }
 SOFTLOQ_WHATWG_INFRA_API const bool infra_string::is_scalar() const
 {
-    return false;
+    for (const auto& point: *static_cast<const code_point_sequence_type*>(this))
+    {
+        if (!point.is_scalar()) return false;
+    }
+    return true;
 }
 
 SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::code_unit_substr(const size_type start, const size_type length) const
 {
-    return infra_string{};
+    infra_string string;
+    if (start >= code_unit_sequence_type::size()) return string;
+    for (size_type i = start; i - start < length && i < code_unit_sequence_type::size(); ++i)
+    {
+        string.push_code_unit(code_unit_sequence_type::operator[](i));
+        string.push_code_point(code_unit_sequence_type::operator[](i));
+    }
+    return string;
 }
 SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::code_unit_substr(const size_type start) const
 {
@@ -194,7 +213,14 @@ SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::code_unit_substr(const size_
 
 SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::code_point_substr(const size_type start, const size_type length) const
 {
-    return infra_string{};
+    infra_string string;
+    if (start >= code_point_sequence_type::size()) return string;
+    for (size_type i = start; i - start < length && i < code_point_sequence_type::size(); ++i)
+    {
+        string.push_code_unit(code_point_sequence_type::operator[](i));
+        string.push_code_point(code_point_sequence_type::operator[](i));
+    }
+    return string;
 }
 SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::code_point_substr(const size_type start) const
 {
@@ -207,11 +233,25 @@ SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence infra_string::byte_encoding() const
 }
 SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::ascii_lowercase() const
 {
-    return infra_string{};
+    infra_string string;
+    for (const auto& point: *static_cast<const code_point_sequence_type*>(this))
+    {
+        infra_code_point lowercase{static_cast<std::uint32_t>(std::tolower(static_cast<std::int32_t>(point)))};
+        string.push_code_unit(lowercase);
+        string.push_code_point(lowercase);
+    }
+    return string;
 }
 SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::ascii_uppercase() const
 {
-    return infra_string{};
+    infra_string string;
+    for (const auto& point: *static_cast<const code_point_sequence_type*>(this))
+    {
+        infra_code_point uppercase{static_cast<std::uint32_t>(std::toupper(static_cast<std::int32_t>(point)))};
+        string.push_code_unit(uppercase);
+        string.push_code_point(uppercase);
+    }
+    return string;
 }
 SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::strip_newlines() const
 {
@@ -290,4 +330,23 @@ SOFTLOQ_WHATWG_INFRA_API void infra_string::push_code_point(const infra_code_poi
 }
 
 //--------------------------//
+
+SOFTLOQ_WHATWG_INFRA_API const bool is_prefix(const infra_string& a, const infra_string& b)
+{
+    return a.size() <= b.size() && std::equal(a.cbegin(), a.cend(), b.cbegin());
+}
+SOFTLOQ_WHATWG_INFRA_API const bool is_suffix(const infra_string& a, const infra_string& b)
+{
+    return a.size() <= b.size() && std::equal(a.crbegin(), a.crend(), b.crbegin());
+}
+SOFTLOQ_WHATWG_INFRA_API const bool is_code_unit_less_than(const infra_string& a, const infra_string& b)
+{
+    if (is_prefix(b, a)) return false;
+    else if (is_prefix(a, b)) return true;
+    else return std::equal(a.cbegin(), a.cend(), b.cbegin(), std::less_equal<infra_code_unit>());
+}
+SOFTLOQ_WHATWG_INFRA_API const bool is_ascii_iequal(const infra_string& a, const infra_string& b)
+{
+    return a.size() == b.size() && std::equal(a.cbegin(), a.cend(), b.cbegin(), [](const auto& unit_a, const auto& unit_b) { return std::tolower(static_cast<std::uint16_t>(unit_a)) == std::tolower(static_cast<std::uint16_t>(unit_b)); });
+}
 }
