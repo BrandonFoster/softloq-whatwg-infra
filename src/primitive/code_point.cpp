@@ -25,7 +25,7 @@ SOFTLOQ_WHATWG_INFRA_API void infra_code_point::print(std::ostream& out) const n
 // Constructors //
 
 SOFTLOQ_WHATWG_INFRA_API infra_code_point::infra_code_point() noexcept : value(0x0000) {}
-SOFTLOQ_WHATWG_INFRA_API infra_code_point::infra_code_point(const std::int32_t value) noexcept : value(value) {}
+SOFTLOQ_WHATWG_INFRA_API infra_code_point::infra_code_point(const std::uint32_t value) noexcept : value(value) {}
 SOFTLOQ_WHATWG_INFRA_API infra_code_point::infra_code_point(const infra_uint32& value) noexcept : value(value) {}
 SOFTLOQ_WHATWG_INFRA_API infra_code_point::infra_code_point(infra_uint32&& value) noexcept : value(std::move(value)) {}
 SOFTLOQ_WHATWG_INFRA_API infra_code_point::infra_code_point(const infra_code_point& src) noexcept : value(src.value) {}
@@ -36,7 +36,7 @@ SOFTLOQ_WHATWG_INFRA_API infra_code_point::~infra_code_point() noexcept {}
 
 // Assignments //
 
-SOFTLOQ_WHATWG_INFRA_API infra_code_point& infra_code_point::operator=(const std::int32_t value) noexcept { infra_code_point::value = value; return *this; }
+SOFTLOQ_WHATWG_INFRA_API infra_code_point& infra_code_point::operator=(const std::uint32_t value) noexcept { infra_code_point::value = value; return *this; }
 SOFTLOQ_WHATWG_INFRA_API infra_code_point& infra_code_point::operator=(const infra_uint32& value) noexcept { infra_code_point::value = value; return *this; }
 SOFTLOQ_WHATWG_INFRA_API infra_code_point& infra_code_point::operator=(infra_uint32&& value) noexcept { infra_code_point::value = std::move(value); return *this; }
 SOFTLOQ_WHATWG_INFRA_API infra_code_point& infra_code_point::operator=(const infra_code_point& src) noexcept { value = src.value; return *this; }
