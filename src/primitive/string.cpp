@@ -8,6 +8,7 @@
 
 #include <sstream>
 #include <algorithm>
+#include <iostream>
 
 namespace softloq::whatwg
 {
@@ -255,11 +256,43 @@ SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::ascii_uppercase() const
 }
 SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::strip_newlines() const
 {
-    return infra_string{};
+    infra_string string;
+    for (const auto& point: *static_cast<const code_point_sequence_type*>(this))
+    {
+        if (point == 0x000A || point == 0x000D) continue;
+        string.push_code_unit(point);
+        string.push_code_point(point);
+    }
+    return string;
 }
 SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::normalize_newlines() const
 {
-    return infra_string{};
+    infra_string string;
+    for (code_point_sequence_type::size_type i = 0; i < code_point_sequence_type::size(); ++i)
+    {
+        const auto& point = code_point_sequence_type::operator[](i);
+        if (string.size() && point == 0x000A)
+        {
+            auto end = --static_cast<code_point_sequence_type*>(&string)->end();
+            if (*end == 0x000D)
+            {
+                *end = 0x000A;
+                *(--static_cast<code_unit_sequence_type*>(&string)->end()) = 0x000A;
+                continue;
+            }
+        }
+        string.push_code_unit(point);
+        string.push_code_point(point);
+    }
+    for (auto& unit: *static_cast<code_unit_sequence_type*>(&string))
+    {
+        if (unit == 0x000D) unit = 0x000A;
+    }
+    for (auto& point: *static_cast<code_point_sequence_type*>(&string))
+    {
+        if (point == 0x000D) point = 0x000A;
+    }
+    return string;
 }
 SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::strip_spaces() const
 {
