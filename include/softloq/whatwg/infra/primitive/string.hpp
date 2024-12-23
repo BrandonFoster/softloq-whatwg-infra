@@ -12,6 +12,7 @@
 #include "softloq/whatwg/infra/primitive/code_point.hpp"
 
 #include <initializer_list>
+#include <functional>
 
 namespace softloq::whatwg
 {
@@ -108,8 +109,8 @@ public:
     SOFTLOQ_WHATWG_INFRA_API infra_string normalize_newlines() const;
     SOFTLOQ_WHATWG_INFRA_API infra_string strip_spaces() const;
     SOFTLOQ_WHATWG_INFRA_API infra_string collapse_spaces() const;
-    SOFTLOQ_WHATWG_INFRA_API infra_string collect() const;
-    SOFTLOQ_WHATWG_INFRA_API void skip_spaces() const;
+    SOFTLOQ_WHATWG_INFRA_API infra_string collect(const std::function<const bool (const infra_code_point)>& cond) const;
+    SOFTLOQ_WHATWG_INFRA_API void skip_spaces(code_point_sequence_type::size_type& point_pos) const;
     SOFTLOQ_WHATWG_INFRA_API void split(const infra_code_point& delim);
     SOFTLOQ_WHATWG_INFRA_API void split_spaces();
     SOFTLOQ_WHATWG_INFRA_API void split_commas();
