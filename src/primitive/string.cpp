@@ -268,7 +268,7 @@ SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::strip_newlines() const
 SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::normalize_newlines() const
 {
     infra_string string;
-    for (code_point_sequence_type::size_type i = 0; i < code_point_sequence_type::size(); ++i)
+    for (code_point_sequence_type::size_type i = {}; i < code_point_sequence_type::size(); ++i)
     {
         const auto& point = code_point_sequence_type::operator[](i);
         if (string.size() && point == 0x000A)
@@ -296,19 +296,68 @@ SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::normalize_newlines() const
 }
 SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::strip_spaces() const
 {
-    return infra_string{};
+    infra_string strip_string;
+    code_unit_sequence_type::size_type start_space = {};
+    code_unit_sequence_type::size_type end_space = {};
+    const code_unit_sequence_type* code_unit_ptr = static_cast<const code_unit_sequence_type*>(this);
+    for (auto it = code_unit_ptr->cbegin(); it != code_unit_ptr->cend(); ++it)
+    {
+        if (*it != 0x20) break;
+        start_space++;
+    }
+    for (auto it = code_unit_ptr->crbegin(); it != code_unit_ptr->crend(); ++it)
+    {
+        if (*it != 0x20) break;
+        end_space++;
+    }
+    for (code_unit_sequence_type::size_type i = start_space; i < code_unit_ptr->size() - end_space; ++i) strip_string.push_code_unit((*code_unit_ptr)[i]);
+    return strip_string;
 }
 SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::collapse_spaces() const
 {
-    return infra_string{};
+    infra_string collapse_string;
+    code_unit_sequence_type::size_type start_space = {};
+    code_unit_sequence_type::size_type end_space = {};
+    const code_unit_sequence_type* code_unit_ptr = static_cast<const code_unit_sequence_type*>(this);
+    for (auto it = code_unit_ptr->cbegin(); it != code_unit_ptr->cend(); ++it)
+    {
+        if (*it != 0x20) break;
+        start_space++;
+    }
+    for (auto it = code_unit_ptr->crbegin(); it != code_unit_ptr->crend(); ++it)
+    {
+        if (*it != 0x20) break;
+        end_space++;
+    }
+    bool found_space = false;
+    for (code_unit_sequence_type::size_type i = start_space; i < code_unit_ptr->size() - end_space; ++i)
+    {
+        const infra_code_unit& unit = (*code_unit_ptr)[i];
+        if (found_space)
+        {
+            if (unit == 0x20) continue;
+            found_space = false;
+        }
+        else if (unit == 0x20) found_space = true;
+        collapse_string.push_code_unit((*code_unit_ptr)[i]);
+    }
+    return collapse_string;
 }
-SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::collect() const
+SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::collect(const std::function<const bool (const infra_code_point)>& cond) const
 {
-    return infra_string{};
+    infra_string collect_string;
+    for (const auto& point: *static_cast<const code_point_sequence_type*>(this))
+        if (cond(point)) collect_string.push_code_point(point);
+    return collect_string;
 }
-SOFTLOQ_WHATWG_INFRA_API void infra_string::skip_spaces() const
+SOFTLOQ_WHATWG_INFRA_API void infra_string::skip_spaces(code_point_sequence_type::size_type& point_pos) const
 {
-
+    const code_point_sequence_type* code_point_ptr = static_cast<const code_point_sequence_type*>(this);
+    for (; point_pos < code_point_ptr->size(); ++point_pos)
+    {
+        if ((*code_point_ptr)[point_pos] == 0x20) continue;
+        break;
+    }
 }
 SOFTLOQ_WHATWG_INFRA_API void infra_string::split(const infra_code_point& delim)
 {
