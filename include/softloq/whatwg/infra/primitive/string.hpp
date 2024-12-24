@@ -10,6 +10,7 @@
 #include "softloq/whatwg/infra/primitive/byte_sequence.hpp"
 #include "softloq/whatwg/infra/primitive/code_unit.hpp"
 #include "softloq/whatwg/infra/primitive/code_point.hpp"
+#include "softloq/whatwg/infra/structure/list.hpp"
 
 #include <initializer_list>
 #include <functional>
@@ -22,6 +23,7 @@ class infra_string: private infra_sequence<infra_code_point>, private infra_sequ
 public:
     // Standard member types //
 
+    using tokens_type = infra_list<infra_string>;
     using code_unit_sequence_type = infra_sequence<infra_code_unit>;
     using code_point_sequence_type = infra_sequence<infra_code_point>;
     using size_type = code_unit_sequence_type::size_type;
@@ -29,7 +31,6 @@ public:
     using const_iterator = code_unit_sequence_type::const_iterator;
     using reverse_iterator = code_unit_sequence_type::reverse_iterator;
     using const_reverse_iterator = code_unit_sequence_type::const_reverse_iterator;
-
 
     //-----------------------//
 
@@ -111,10 +112,10 @@ public:
     SOFTLOQ_WHATWG_INFRA_API infra_string collapse_spaces() const;
     SOFTLOQ_WHATWG_INFRA_API infra_string collect(const std::function<const bool (const infra_code_point)>& cond) const;
     SOFTLOQ_WHATWG_INFRA_API void skip_spaces(code_point_sequence_type::size_type& point_pos) const;
-    SOFTLOQ_WHATWG_INFRA_API void split(const infra_code_point& delim);
-    SOFTLOQ_WHATWG_INFRA_API void split_spaces();
-    SOFTLOQ_WHATWG_INFRA_API void split_commas();
-    SOFTLOQ_WHATWG_INFRA_API static void concatenate();
+    SOFTLOQ_WHATWG_INFRA_API tokens_type split(const infra_code_point& delim) const;
+    SOFTLOQ_WHATWG_INFRA_API tokens_type split_spaces() const;
+    SOFTLOQ_WHATWG_INFRA_API tokens_type split_commas() const;
+    SOFTLOQ_WHATWG_INFRA_API static infra_string concatenate(const infra_list<infra_string>& list, infra_string separator = {});
 
     //------------------//
 
