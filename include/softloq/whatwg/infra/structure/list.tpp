@@ -94,22 +94,22 @@ template <class T> void infra_list<T>::pop_front() noexcept { container_type::po
 template <class T> void infra_list<T>::extend(const infra_list& list) noexcept { container_type::insert_range(cend(), list); }
 template <class T> void infra_list<T>::extend(infra_list&& list) noexcept { container_type::insert_range(cend(), std::move(list)); }
 
-template <class T> void infra_list<T>::replace(const value_type& item, const std::function<const bool (const value_type& item)>& cond) noexcept
+template <class T> void infra_list<T>::replace(const_reference item, const std::function<const bool (const_reference item)>& cond) noexcept
 {
     std::transform(cbegin(), cend(), begin(), [](auto& x) { return cond(x) ? item : x; });
 }
 
-template <class T> void infra_list<T>::insert(const size_type index, const value_type& item) noexcept { container_type::insert(cbegin() + index, item); }
+template <class T> void infra_list<T>::insert(const size_type index, const_reference item) noexcept { container_type::insert(cbegin() + index, item); }
 template <class T> void infra_list<T>::insert(const size_type index, value_type&& item) noexcept { container_type::insert(cbegin() + index, std::move(item)); }
 
-template <class T> void infra_list<T>::remove(const value_type& item) noexcept { container_type::remove(item); }
-template <class T> void infra_list<T>::remove_if(const std::function<const bool (const value_type& item)>& cond) noexcept { container_type::remove_if(cond); }
+template <class T> void infra_list<T>::remove(const_reference item) noexcept { container_type::remove(item); }
+template <class T> void infra_list<T>::remove_if(const std::function<const bool (const_reference item)>& cond) noexcept { container_type::remove_if(cond); }
 
 template <class T> const infra_list<T>::size_type infra_list<T>::size() const noexcept { return container_type::size(); }
 template <class T> const bool infra_list<T>::empty() const noexcept { return container_type::empty(); }
 template <class T> void infra_list<T>::clear() noexcept { container_type::clear(); }
 
-template <class T> const bool infra_list<T>::contains(const value_type& item) const noexcept
+template <class T> const bool infra_list<T>::contains(const_reference item) const noexcept
 {
     for (const auto& x: *this)
         if (item == x) return true;

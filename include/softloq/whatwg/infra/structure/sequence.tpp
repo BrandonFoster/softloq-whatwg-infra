@@ -80,12 +80,15 @@ template <class T> infra_sequence<T>::reference infra_sequence<T>::front() noexc
 template <class T> infra_sequence<T>::const_reference infra_sequence<T>::front() const noexcept { return container_type::front(); }
 template <class T> infra_sequence<T>::reference infra_sequence<T>::back() noexcept { return container_type::back(); }
 template <class T> infra_sequence<T>::const_reference infra_sequence<T>::back() const noexcept { return container_type::back(); }
+
 template <class T> void infra_sequence<T>::push_back(const_reference item) noexcept { container_type::push_back(item); }
 template <class T> void infra_sequence<T>::push_back(T&& item) noexcept { container_type::push_back(std::move(item)); }
 template <class T> void infra_sequence<T>::pop_back() noexcept { container_type::pop_back(); }
+
 template <class T> const infra_sequence<T>::size_type infra_sequence<T>::size() const noexcept { return container_type::size(); }
 template <class T> const bool infra_sequence<T>::empty() const noexcept { return container_type::empty(); }
 template <class T> void infra_sequence<T>::clear() noexcept { container_type::clear(); }
+
 template <class T> infra_sequence<T>::reference infra_sequence<T>::operator[](const size_type index) noexcept { return container_type::operator[](index); }
 template <class T> infra_sequence<T>::const_reference infra_sequence<T>::operator[](const size_type index) const noexcept { return container_type::operator[](index); }
 

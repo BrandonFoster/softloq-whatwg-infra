@@ -82,12 +82,15 @@ public:
     const_reference front() const noexcept;
     reference back() noexcept;
     const_reference back() const noexcept;
+    
     void push_back(const_reference item) noexcept;
     void push_back(value_type&& item) noexcept;
     void pop_back() noexcept;
+
     const size_type size() const noexcept;
     const bool empty() const noexcept;
     void clear() noexcept;
+
     reference operator[](const size_type index) noexcept;
     const_reference operator[](const size_type index) const noexcept;
     
