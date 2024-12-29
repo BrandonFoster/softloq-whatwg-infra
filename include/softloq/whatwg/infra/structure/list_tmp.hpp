@@ -1,27 +1,28 @@
 // /**
-//  * @file sequence.hpp
+//  * @file list.hpp
 //  * @author Brandon Foster (https://github.com/BrandonFoster)
-//  * @brief Declaration of the WHATWG infra sequence data structure class.
+//  * @brief Declaration of the WHATWG infra list data structure class.
 //  * @version 1.0.0 */
 
-// #ifndef SOFTLOQ_WHATWG_INFRA_STRUCTURE_SEQUENCE_HPP
-// #define SOFTLOQ_WHATWG_INFRA_STRUCTURE_SEQUENCE_HPP
+// #ifndef SOFTLOQ_WHATWG_INFRA_STRUCTURE_LIST_HPP
+// #define SOFTLOQ_WHATWG_INFRA_STRUCTURE_LIST_HPP
 
 // #include "softloq/whatwg/infra/structure/base.hpp"
 
 // #include <initializer_list>
-// #include <vector>
+// #include <functional>
+// #include <list>
 
 // namespace softloq::whatwg
 // {
 // /** @brief WHATWG infra sequence data structure class. */
-// template <class T> class infra_sequence : private std::vector<T>, public infra_structure_base
+// template <class T> class infra_list : private std::list<T>, public infra_structure_base
 // {
 // public:
 //     // Standard member types //
 
 //     using value_type = T;
-//     using container_type = std::vector<value_type>;
+//     using container_type = std::list<value_type>;
 //     using size_type	= std::size_t;
 //     using reference = value_type&;
 //     using const_reference = const value_type&;
@@ -61,18 +62,18 @@
 
 //     // Constructors //
 
-//     infra_sequence() noexcept;
-//     infra_sequence(const std::initializer_list<value_type>& values) noexcept;
-//     infra_sequence(const infra_sequence& src) noexcept;
-//     infra_sequence(infra_sequence&& src) noexcept;
-//     ~infra_sequence() noexcept;
+//     infra_list() noexcept;
+//     infra_list(const std::initializer_list<value_type>& values) noexcept;
+//     infra_list(const infra_list& src) noexcept;
+//     infra_list(infra_list&& src) noexcept;
+//     ~infra_list() noexcept;
 
 //     //--------------//
 
 //     // Assignments //
 
-//     infra_sequence& operator=(const infra_sequence& src) noexcept;
-//     infra_sequence& operator=(infra_sequence&& src) noexcept;
+//     infra_list& operator=(const infra_list& src) noexcept;
+//     infra_list& operator=(infra_list&& src) noexcept;
 
 //     //-------------//
 
@@ -82,22 +83,40 @@
 //     const_reference front() const noexcept;
 //     reference back() noexcept;
 //     const_reference back() const noexcept;
-    
-//     void push_back(const_reference item) noexcept;
-//     void push_back(value_type&& item) noexcept;
-//     void pop_back() noexcept;
 
+//     virtual void append(const_reference item) noexcept;
+//     virtual void append(value_type&& item) noexcept;
+//     virtual void pop_back() noexcept;
+
+//     virtual void prepend(const_reference item) noexcept;
+//     virtual void prepend(value_type&& item) noexcept;
+//     virtual void pop_front() noexcept;
+
+//     virtual void extend(const infra_list& list) noexcept;
+//     virtual void extend(infra_list&& list) noexcept;
+
+//     virtual void replace(const_reference item, const std::function<const bool (const_reference item)>& cond) noexcept;
+
+//     virtual void insert(const size_type index, const_reference item) noexcept;
+//     virtual void insert(const size_type index, value_type&& item) noexcept;
+
+//     virtual void remove(const_reference item) noexcept;
+//     virtual void remove_if(const std::function<const bool (const_reference item)>& cond) noexcept;
+    
 //     const size_type size() const noexcept;
 //     const bool empty() const noexcept;
-//     void clear() noexcept;
+//     virtual void clear() noexcept;
 
-//     reference operator[](const size_type index) noexcept;
-//     const_reference operator[](const size_type index) const noexcept;
+//     virtual const bool contains(const_reference item) const noexcept;
+//     infra_list clone() const noexcept;
+
+//     void sort_ascending() noexcept;
+//     void sort_descending() noexcept;
     
 //     //------------------//
 // };
 // }
 
-// #include "softloq/whatwg/infra/structure/sequence.tpp"
+// #include "softloq/whatwg/infra/structure/list.tpp"
 
 // #endif
