@@ -15,16 +15,16 @@ namespace softloq::whatwg
 
 template <class T> infra_list<T>::infra_list() noexcept {}
 template <class T> infra_list<T>::infra_list(const std::initializer_list<T>& values) noexcept : values(values) {}
-template <class T> infra_list<T>::infra_list(const infra_list& src) noexcept : values(src) {}
-template <class T> infra_list<T>::infra_list(infra_list&& src) noexcept : values(std::move(src)) {}
+template <class T> infra_list<T>::infra_list(const infra_list& src) noexcept : values(src.values) {}
+template <class T> infra_list<T>::infra_list(infra_list&& src) noexcept : values(std::move(src.values)) {}
 template <class T> infra_list<T>::~infra_list() noexcept {}
 
 //--------------//
 
 // assignments //
 
-template <class T> infra_list<T>& infra_list<T>::operator=(const infra_list& src) noexcept { this->values = src; }
-template <class T> infra_list<T>& infra_list<T>::operator=(infra_list&& src) noexcept { this->values = std::move(src); }
+template <class T> infra_list<T>& infra_list<T>::operator=(const infra_list& src) noexcept { values = src.values; return *this; }
+template <class T> infra_list<T>& infra_list<T>::operator=(infra_list&& src) noexcept { values = std::move(src.values); return *this; }
 
 //-------------//
 
@@ -95,7 +95,7 @@ template <class T> const bool infra_list<T>::empty() const noexcept { return val
 template <class T> void infra_list<T>::clear() noexcept { values.clear(); }
 
 template <class T> const bool infra_list<T>::contains(const T& item) const noexcept { return false; }
-template <class T> infra_list<T> infra_list<T>::clone() const noexcept { return values; }
+template <class T> infra_list<T> infra_list<T>::clone() const noexcept { return *this; }
 template <class T> void infra_list<T>::sort_ascending() noexcept {}
 template <class T> void infra_list<T>::sort_descending() noexcept {}
 
