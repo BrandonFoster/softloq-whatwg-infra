@@ -23,6 +23,7 @@ public:
     // common member types //
 
     using container_type = std::list<T>;
+    using value_type = T;
     using size_type	= std::size_t;
 
     //---------------------//
