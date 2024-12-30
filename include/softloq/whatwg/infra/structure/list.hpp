@@ -119,7 +119,7 @@ public:
     
     //---------------------------------//
 
-private:
+protected:
     std::list<T> values;
 };
 }

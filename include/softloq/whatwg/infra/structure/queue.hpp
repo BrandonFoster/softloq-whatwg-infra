@@ -1,65 +1,70 @@
-// /**
-//  * @file queue.hpp
-//  * @author Brandon Foster (https://github.com/BrandonFoster)
-//  * @brief Declaration of the WHATWG infra queue data structure class.
-//  * @version 1.0.0 */
+/**
+ * @file queue.hpp
+ * @author Brandon Foster (https://github.com/BrandonFoster)
+ * @brief Declaration of the WHATWG infra queue data structure class.
+ * @version 1.0.0 */
 
-// #ifndef SOFTLOQ_WHATWG_INFRA_STRUCTURE_QUEUE_HPP
-// #define SOFTLOQ_WHATWG_INFRA_STRUCTURE_QUEUE_HPP
+#ifndef SOFTLOQ_WHATWG_INFRA_STRUCTURE_QUEUE_HPP
+#define SOFTLOQ_WHATWG_INFRA_STRUCTURE_QUEUE_HPP
 
-// #include "softloq/whatwg/infra/structure/list.hpp"
+#include "softloq/whatwg/infra/structure/list.hpp"
 
-// namespace softloq::whatwg
-// {
-// /** @brief WHATWG infra queue data structure class. */
-// template <class T> class infra_queue : public infra_list<T>
-// {
-// public:
-//     // Standard member types //
+#include <optional>
 
-//     using value_type = T;
-//     using container_type = std::list<value_type>;
-//     using size_type	= std::size_t;
-//     using reference = value_type&;
-//     using const_reference = const value_type&;
-//     using iterator = container_type::iterator;
-//     using const_iterator = container_type::const_iterator;
-//     using reverse_iterator = container_type::reverse_iterator;
-//     using const_reverse_iterator = container_type::const_reverse_iterator;
+namespace softloq::whatwg
+{
+/** @brief WHATWG infra queue data structure class. */
+template <class T> class infra_queue : public infra_list<T>
+{
+public:
+    // constructors //
 
-//     //-----------------------//
+    infra_queue() noexcept;
+    infra_queue(const std::initializer_list<T>& values) noexcept;
+    infra_queue(const infra_queue& src) noexcept;
+    infra_queue(infra_queue&& src) noexcept;
+    ~infra_queue() noexcept;
 
-//     // Deleted functions //
+    //--------------//
 
-//     reference front() noexcept = delete;
-//     const_reference front() const noexcept = delete;
-//     reference back() noexcept = delete;
-//     const_reference back() const noexcept = delete;
+    // assignments //
+
+    infra_queue& operator=(const infra_queue& src) noexcept;
+    infra_queue& operator=(infra_queue&& src) noexcept;
+
+    //-------------//
+
+    // Deleted functions //
+
+    T& front() noexcept = delete;
+    const T& front() const noexcept = delete;
+    T& back() noexcept = delete;
+    const T& back() const noexcept = delete;
     
-//     void append(const_reference item) noexcept = delete;
-//     void append(value_type&& item) noexcept = delete;
-//     void pop_back() noexcept = delete;
+    void append(const T& item) noexcept = delete;
+    void append(T&& item) noexcept = delete;
+    void pop_back() noexcept = delete;
 
-//     void prepend(const_reference item) noexcept = delete;
-//     void prepend(value_type&& item) noexcept = delete;
-//     void pop_front() noexcept = delete;
+    void prepend(const T& item) noexcept = delete;
+    void prepend(T&& item) noexcept = delete;
+    void pop_front() noexcept = delete;
 
-//     void remove(const_reference item) noexcept = delete;
-//     void remove_if(const std::function<const bool (const_reference item)>& cond) noexcept = delete;
+    void remove(const T& item) noexcept = delete;
+    void remove_if(const std::function<const bool (const T& item)>& cond) noexcept = delete;
 
-//     //-------------------//
+    //-------------------//
 
-//     // Member functions //
+    // Member functions //
 
-//     std::optional<value_type> peek() const noexcept;
-//     void enqueue(const_reference item) noexcept;
-//     void enqueue(value_type&& item) noexcept;
-//     std::optional<value_type> dequeue() noexcept;
+    std::optional<T> peek() const noexcept;
+    void enqueue(const T& item) noexcept;
+    void enqueue(T&& item) noexcept;
+    std::optional<T> dequeue() noexcept;
 
-//     //------------------//
-// };
-// }
+    //------------------//
+};
+}
 
-// #include "softloq/whatwg/infra/structure/queue.tpp"
+#include "softloq/whatwg/infra/structure/queue.tpp"
 
-// #endif
+#endif
