@@ -34,7 +34,7 @@ public:
 
     //-------------//
 
-    // Deleted functions //
+    // deleted functions //
 
     T& front() noexcept = delete;
     const T& front() const noexcept = delete;
@@ -54,7 +54,7 @@ public:
 
     //-------------------//
 
-    // Member functions //
+    // WHATWG stack member functions //
 
     std::optional<T> peek() const noexcept;
     void push(const T& item) noexcept;
