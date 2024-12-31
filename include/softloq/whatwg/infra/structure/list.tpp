@@ -48,22 +48,6 @@ template <class T> infra_list<T>::const_reverse_iterator infra_list<T>::crend() 
 
 //---------------------------//
 
-// WHATWG structure base overrides //
-
-template <class T> const infra_structure_type infra_list<T>::structure_type() const noexcept { return infra_structure_type::infra_list; }
-template <class T> void infra_list<T>::print(std::ostream& out) const noexcept
-{
-    auto curr_it = values.cbegin();
-    auto last_it = values.cend();
-    for(const T& item: values)
-    {
-        out << item;
-        if(++curr_it != last_it) out << " ";
-    }
-}
-
-//---------------------------------//
-
 // WHATWG list member functions //
 
 template <class T> T& infra_list<T>::front() noexcept { return values.front(); }
@@ -104,4 +88,20 @@ template <class T> void infra_list<T>::sort_ascending() noexcept { values.sort(s
 template <class T> void infra_list<T>::sort_descending() noexcept { values.sort(std::greater<T>()); }
 
 //------------------------------//
+
+// WHATWG structure base overrides //
+
+template <class T> const infra_structure_type infra_list<T>::structure_type() const noexcept { return infra_structure_type::infra_list; }
+template <class T> void infra_list<T>::print(std::ostream& out) const noexcept
+{
+    auto curr_it = values.cbegin();
+    auto last_it = values.cend();
+    for(const T& item: values)
+    {
+        out << item;
+        if(++curr_it != last_it) out << " ";
+    }
+}
+
+//---------------------------------//
 }

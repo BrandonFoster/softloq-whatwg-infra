@@ -93,6 +93,13 @@ public:
     
     //------------------//
 
+    // WHATWG structure base overrides //
+
+    const infra_structure_type structure_type() const noexcept override;
+    void print(std::ostream& out) const noexcept override;
+    
+    //---------------------------------//
+
 private:
     std::vector<T> values;
 };

@@ -53,8 +53,8 @@ template <class T> const T& infra_sequence<T>::front() const noexcept { return v
 template <class T> T& infra_sequence<T>::back() noexcept { return values.back(); }
 template <class T> const T& infra_sequence<T>::back() const noexcept { return values.back(); }
 
-template <class T> void infra_sequence<T>::push_back(const T& item) noexcept { values.push_back(T); }
-template <class T> void infra_sequence<T>::push_back(T&& item) noexcept { values.push_back(std::move(T)); }
+template <class T> void infra_sequence<T>::push_back(const T& item) noexcept { values.push_back(item); }
+template <class T> void infra_sequence<T>::push_back(T&& item) noexcept { values.push_back(std::move(item)); }
 template <class T> void infra_sequence<T>::pop_back() noexcept { values.pop_back(); }
 
 template <class T> const infra_sequence<T>::size_type infra_sequence<T>::size() const noexcept { return values.size(); }
@@ -65,4 +65,20 @@ template <class T> T& infra_sequence<T>::operator[](const size_type index) noexc
 template <class T> const T& infra_sequence<T>::operator[](const size_type index) const noexcept { return values[index]; }
 
 //------------------//
+
+// WHATWG structure base overrides //
+
+template <class T> const infra_structure_type infra_sequence<T>::structure_type() const noexcept { return infra_structure_type::infra_sequence; }
+template <class T> void infra_sequence<T>::print(std::ostream& out) const noexcept
+{
+    auto curr_it = values.cbegin();
+    auto last_it = values.cend();
+    for(const T& item: values)
+    {
+        out << item;
+        if(++curr_it != last_it) out << " ";
+    }
+}
+
+//---------------------------------//
 }
