@@ -12,13 +12,6 @@
 
 namespace softloq::whatwg
 {
-// WHATWG primitive base overrides //
-
-SOFTLOQ_WHATWG_INFRA_API const infra_primitive_type infra_byte_sequence::primitive_type() const noexcept { return infra_primitive_type::infra_byte_sequence; }
-SOFTLOQ_WHATWG_INFRA_API void infra_byte_sequence::print(std::ostream& out) const noexcept { sequence.print(out); }
-
-//---------------------------------//
-
 // constructors //
 
 SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence::infra_byte_sequence() noexcept {}
@@ -126,6 +119,20 @@ SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence infra_byte_sequence::uppercase() co
 }
 
 //-------------------------//
+
+// WHATWG primitive base overrides //
+
+SOFTLOQ_WHATWG_INFRA_API const infra_primitive_type infra_byte_sequence::primitive_type() const noexcept { return infra_primitive_type::infra_byte_sequence; }
+SOFTLOQ_WHATWG_INFRA_API void infra_byte_sequence::print(std::ostream& out) const noexcept { sequence.print(out); }
+
+//---------------------------------//
+
+// WHATWG byte sequence comparison functions //
+
+SOFTLOQ_WHATWG_INFRA_API const bool infra_byte_sequence::operator<(const infra_byte_sequence& b) const noexcept { return is_byte_less(*this, b); }
+SOFTLOQ_WHATWG_INFRA_API const bool infra_byte_sequence::operator==(const infra_byte_sequence& b) const noexcept { return sequence == b.sequence; }
+
+//-------------------------------------------//
 
 // WHATWG byte sequence comparison functions //
 
