@@ -100,6 +100,12 @@ public:
     
     //---------------------------------//
 
+    // WHATWG sequence comparison functions //
+
+    const bool operator==(const infra_sequence<T>& b) const;
+
+    //--------------------------------------//
+
 private:
     std::vector<T> values;
 };

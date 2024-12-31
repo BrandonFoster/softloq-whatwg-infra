@@ -33,14 +33,6 @@ public:
     using const_reverse_iterator = container_type::const_reverse_iterator;
 
     //-----------------------//
-    
-
-    // WHATWG primitive base overrides //
-
-    SOFTLOQ_WHATWG_INFRA_API const infra_primitive_type primitive_type() const noexcept override;
-    SOFTLOQ_WHATWG_INFRA_API void print(std::ostream& out) const noexcept override;
-
-    //---------------------------------//
 
     // constructors //
 
@@ -110,6 +102,20 @@ public:
     SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence uppercase() const noexcept;
 
     //-------------------------//
+
+    // WHATWG primitive base overrides //
+
+    SOFTLOQ_WHATWG_INFRA_API const infra_primitive_type primitive_type() const noexcept override;
+    SOFTLOQ_WHATWG_INFRA_API void print(std::ostream& out) const noexcept override;
+
+    //---------------------------------//
+
+    // WHATWG byte sequence comparison functions //
+
+    SOFTLOQ_WHATWG_INFRA_API const bool operator<(const infra_byte_sequence& b) const noexcept;
+    SOFTLOQ_WHATWG_INFRA_API const bool operator==(const infra_byte_sequence& b) const noexcept;
+
+    //-------------------------------------------//
 
 private:
     infra_sequence<infra_byte> sequence;
