@@ -16,16 +16,20 @@
 namespace softloq::whatwg
 {
 /** @brief WHATWG infra sequence data structure class. */
-template <class T> class infra_list : private std::list<T>, public infra_structure_base
+template <class T> class infra_list : public infra_structure_base
 {
 public:
-    // Standard member types //
+    
+    // common member types //
 
+    using container_type = std::list<T>;
     using value_type = T;
-    using container_type = std::list<value_type>;
     using size_type	= std::size_t;
-    using reference = value_type&;
-    using const_reference = const value_type&;
+
+    //---------------------//
+
+    // iterator member types //
+
     using iterator = container_type::iterator;
     using const_iterator = container_type::const_iterator;
     using reverse_iterator = container_type::reverse_iterator;
@@ -33,25 +37,80 @@ public:
 
     //-----------------------//
 
-    // Standard iterator functions //
+    // constructors //
 
-    iterator begin() noexcept;
-    const_iterator begin() const noexcept;
+    infra_list() noexcept;
+    infra_list(const std::initializer_list<T>& values) noexcept;
+    infra_list(const infra_list& src) noexcept;
+    infra_list(infra_list&& src) noexcept;
+    ~infra_list() noexcept;
+
+    //--------------//
+
+    // assignments //
+
+    infra_list& operator=(const infra_list& src) noexcept;
+    infra_list& operator=(infra_list&& src) noexcept;
+
+    //-------------//
+
+    // iterator member functions //
+
+    iterator begin();
+    const_iterator begin() const;
     const_iterator cbegin() const noexcept;
 
-    iterator end() noexcept;
-    const_iterator end() const noexcept;
+    iterator end();
+    const_iterator end() const;
     const_iterator cend() const noexcept;
 
-    reverse_iterator rbegin() noexcept;
-    const_reverse_iterator rbegin() const noexcept;
+    reverse_iterator rbegin();
+    const_reverse_iterator rbegin() const;
     const_reverse_iterator crbegin() const noexcept;
 
-    reverse_iterator rend() noexcept;
-    const_reverse_iterator rend() const noexcept;
+    reverse_iterator rend();
+    const_reverse_iterator rend() const;
     const_reverse_iterator crend() const noexcept;
 
-    //-----------------------------//
+    //---------------------------//
+
+    // WHATWG list member functions //
+
+    T& front() noexcept;
+    const T& front() const noexcept;
+    T& back() noexcept;
+    const T& back() const noexcept;
+
+    virtual void append(const T& item) noexcept;
+    virtual void append(T&& item) noexcept;
+    virtual void pop_back() noexcept;
+
+    virtual void prepend(const T& item) noexcept;
+    virtual void prepend(T&& item) noexcept;
+    virtual void pop_front() noexcept;
+
+    virtual void extend(const infra_list& list) noexcept;
+    virtual void extend(infra_list&& list) noexcept;
+
+    virtual void replace(const T& item, const std::function<const bool (const T& item)>& cond) noexcept;
+
+    virtual void insert(const size_type index, const T& item) noexcept;
+    virtual void insert(const size_type index, T&& item) noexcept;
+
+    virtual void remove(const T& item) noexcept;
+    virtual void remove_if(const std::function<const bool (const T& item)>& cond) noexcept;
+    
+    const size_type size() const noexcept;
+    const bool empty() const noexcept;
+    virtual void clear() noexcept;
+
+    virtual const bool contains(const T& item) const noexcept;
+    infra_list clone() const noexcept;
+
+    void sort_ascending() noexcept;
+    void sort_descending() noexcept;
+    
+    //------------------//
 
     // WHATWG structure base overrides //
 
@@ -60,60 +119,8 @@ public:
     
     //---------------------------------//
 
-    // Constructors //
-
-    infra_list() noexcept;
-    infra_list(const std::initializer_list<value_type>& values) noexcept;
-    infra_list(const infra_list& src) noexcept;
-    infra_list(infra_list&& src) noexcept;
-    ~infra_list() noexcept;
-
-    //--------------//
-
-    // Assignments //
-
-    infra_list& operator=(const infra_list& src) noexcept;
-    infra_list& operator=(infra_list&& src) noexcept;
-
-    //-------------//
-
-    // Member functions //
-
-    reference front() noexcept;
-    const_reference front() const noexcept;
-    reference back() noexcept;
-    const_reference back() const noexcept;
-
-    virtual void append(const_reference item) noexcept;
-    virtual void append(value_type&& item) noexcept;
-    virtual void pop_back() noexcept;
-
-    virtual void prepend(const_reference item) noexcept;
-    virtual void prepend(value_type&& item) noexcept;
-    virtual void pop_front() noexcept;
-
-    virtual void extend(const infra_list& list) noexcept;
-    virtual void extend(infra_list&& list) noexcept;
-
-    virtual void replace(const_reference item, const std::function<const bool (const_reference item)>& cond) noexcept;
-
-    virtual void insert(const size_type index, const_reference item) noexcept;
-    virtual void insert(const size_type index, value_type&& item) noexcept;
-
-    virtual void remove(const_reference item) noexcept;
-    virtual void remove_if(const std::function<const bool (const_reference item)>& cond) noexcept;
-    
-    const size_type size() const noexcept;
-    const bool empty() const noexcept;
-    virtual void clear() noexcept;
-
-    virtual const bool contains(const_reference item) const noexcept;
-    infra_list clone() const noexcept;
-
-    void sort_ascending() noexcept;
-    void sort_descending() noexcept;
-    
-    //------------------//
+protected:
+    std::list<T> values;
 };
 }
 

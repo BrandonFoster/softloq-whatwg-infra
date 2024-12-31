@@ -8,22 +8,29 @@
 
 namespace softloq::whatwg
 {
-// Member functions //
+// constructors //
 
-template <class T> std::optional<T> infra_stack<T>::peek() const noexcept
-{
-    if (infra_list<T>::empty()) return {};
-    return infra_list<T>::back();
-}
-template <class T> void infra_stack<T>::push(const_reference item) noexcept { infra_list<T>::push_back(item); }
-template <class T> void infra_stack<T>::push(value_type&& item) noexcept { infra_list<T>::push_back(std::move(item)); }
-template <class T> std::optional<T> infra_stack<T>::pop() noexcept
-{
-    if (infra_list<T>::empty()) return {};
-    value_type back = infra_list<T>::back();
-    infra_list<T>::pop_back();
-    return back;
-}
+template <class T> infra_stack<T>::infra_stack() noexcept {}
+template <class T> infra_stack<T>::infra_stack(const std::initializer_list<T>& values) noexcept : infra_list<T>{values} {}
+template <class T> infra_stack<T>::infra_stack(const infra_stack& src) noexcept : infra_list<T>{src.values} {}
+template <class T> infra_stack<T>::infra_stack(infra_stack&& src) noexcept : infra_list<T>{std::move(src)} {}
+template <class T> infra_stack<T>::~infra_stack() noexcept {}
+
+//--------------//
+
+// assignments //
+
+template <class T> infra_stack<T>& infra_stack<T>::operator=(const infra_stack& src) noexcept { infra_list<T>::values = src.values; return *this; }
+template <class T> infra_stack<T>& infra_stack<T>::operator=(infra_stack&& src) noexcept { infra_list<T>::values = std::move(src.values); return *this; }
+
+//-------------//
+
+// WHATWG stack member functions //
+
+template <class T> std::optional<T> infra_stack<T>::peek() const noexcept { return infra_list<T>::empty() ? std::optional<T>{} : infra_list<T>::back(); }
+template <class T> void infra_stack<T>::push(const T& item) noexcept { infra_list<T>::push_back(T); }
+template <class T> void infra_stack<T>::push(T&& item) noexcept { infra_list<T>::push_back(std::move(T)); }
+template <class T> std::optional<T> infra_stack<T>::pop() noexcept { infra_list<T>::pop_back(); }
 
 //------------------//
 }
