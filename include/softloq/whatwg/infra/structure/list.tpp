@@ -96,11 +96,9 @@ template <class T> void infra_list<T>::print(std::ostream& out) const noexcept
 {
     auto curr_it = values.cbegin();
     auto last_it = values.cend();
-    for(const T& item: values)
-    {
-        out << item;
-        if(++curr_it != last_it) out << " ";
-    }
+    out << "« ";
+    for(const T& item: values) out << item << (++curr_it != last_it ? ", " : " ");
+    out << "»";
 }
 
 //---------------------------------//

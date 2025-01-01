@@ -74,10 +74,10 @@ SOFTLOQ_WHATWG_INFRA_API infra_string::const_reverse_iterator infra_string::cren
 
 // WHATWG string member functions //
 
-SOFTLOQ_WHATWG_INFRA_API const infra_string::code_unit_container_type& infra_string::code_units() const { return units; }
-SOFTLOQ_WHATWG_INFRA_API const infra_string::code_point_container_type& infra_string::code_points() const { return points; }
+SOFTLOQ_WHATWG_INFRA_API const infra_string::code_unit_container_type& infra_string::code_units() const noexcept { return units; }
+SOFTLOQ_WHATWG_INFRA_API const infra_string::code_point_container_type& infra_string::code_points() const noexcept { return points; }
 
-SOFTLOQ_WHATWG_INFRA_API std::string infra_string::code_unit_str() const
+SOFTLOQ_WHATWG_INFRA_API std::string infra_string::code_unit_str() const noexcept
 {
     std::stringstream out;
     for (code_unit_container_type::size_type i = 0; i < units.size(); ++i)
@@ -87,7 +87,7 @@ SOFTLOQ_WHATWG_INFRA_API std::string infra_string::code_unit_str() const
     }
     return out.str();
 }
-SOFTLOQ_WHATWG_INFRA_API std::string infra_string::code_point_str() const
+SOFTLOQ_WHATWG_INFRA_API std::string infra_string::code_point_str() const noexcept
 {
     std::stringstream out;
     for (code_point_container_type::size_type i = 0; i < points.size(); ++i)
@@ -97,7 +97,7 @@ SOFTLOQ_WHATWG_INFRA_API std::string infra_string::code_point_str() const
     }
     return out.str();
 }
-SOFTLOQ_WHATWG_INFRA_API std::string infra_string::quoted_str() const
+SOFTLOQ_WHATWG_INFRA_API std::string infra_string::quoted_str() const noexcept
 {
     std::string quoted = "\"";
     for (const auto& point: points)
@@ -126,7 +126,7 @@ SOFTLOQ_WHATWG_INFRA_API std::string infra_string::quoted_str() const
     quoted += "\"";
     return quoted;
 }
-SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::scalar() const
+SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::scalar() const noexcept
 {
     infra_string string;
     for (const auto& unit: units)
@@ -150,27 +150,27 @@ SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::scalar() const
     return string;
 }
 
-SOFTLOQ_WHATWG_INFRA_API infra_string::size_type infra_string::size() const { return units.size(); }
-SOFTLOQ_WHATWG_INFRA_API infra_string::code_unit_container_type::size_type infra_string::code_unit_size() const { return units.size(); }
-SOFTLOQ_WHATWG_INFRA_API infra_string::code_point_container_type::size_type infra_string::code_point_size() const { return points.size(); }
+SOFTLOQ_WHATWG_INFRA_API infra_string::size_type infra_string::size() const noexcept { return units.size(); }
+SOFTLOQ_WHATWG_INFRA_API infra_string::code_unit_container_type::size_type infra_string::code_unit_size() const noexcept { return units.size(); }
+SOFTLOQ_WHATWG_INFRA_API infra_string::code_point_container_type::size_type infra_string::code_point_size() const noexcept { return points.size(); }
 
-SOFTLOQ_WHATWG_INFRA_API const bool infra_string::is_ascii() const
+SOFTLOQ_WHATWG_INFRA_API const bool infra_string::is_ascii() const noexcept
 {
     for (const auto& point: points) if (!point.is_ascii()) return false;
     return true;
 }
-SOFTLOQ_WHATWG_INFRA_API const bool infra_string::is_isomorphic() const
+SOFTLOQ_WHATWG_INFRA_API const bool infra_string::is_isomorphic() const noexcept
 {
     for (const auto& point: points) if (point > 0xFF) return false;
     return true;
 }
-SOFTLOQ_WHATWG_INFRA_API const bool infra_string::is_scalar() const
+SOFTLOQ_WHATWG_INFRA_API const bool infra_string::is_scalar() const noexcept
 {
     for (const auto& point: points) if (!point.is_scalar()) return false;
     return true;
 }
 
-SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::code_unit_substr(const size_type start, const size_type length) const
+SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::code_unit_substr(const size_type start, const size_type length) const noexcept
 {
     infra_string string;
     if (start >= units.size()) return string;
@@ -181,8 +181,8 @@ SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::code_unit_substr(const size_
     }
     return string;
 }
-SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::code_unit_substr(const size_type start) const { return code_unit_substr(start, units.size()); }
-SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::code_point_substr(const size_type start, const size_type length) const
+SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::code_unit_substr(const size_type start) const noexcept { return code_unit_substr(start, units.size()); }
+SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::code_point_substr(const size_type start, const size_type length) const noexcept
 {
     infra_string string;
     if (start >= points.size()) return string;
@@ -193,10 +193,10 @@ SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::code_point_substr(const size
     }
     return string;
 }
-SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::code_point_substr(const size_type start) const { return code_point_substr(start, points.size()); }
+SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::code_point_substr(const size_type start) const noexcept { return code_point_substr(start, points.size()); }
 
-SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence infra_string::byte_encoding() const { return infra_byte_sequence{}; }
-SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::ascii_lowercase() const
+SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence infra_string::byte_encoding() const noexcept { return infra_byte_sequence{}; }
+SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::ascii_lowercase() const noexcept
 {
     infra_string string;
     for (const auto& point: points)
@@ -207,7 +207,7 @@ SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::ascii_lowercase() const
     }
     return string;
 }
-SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::ascii_uppercase() const
+SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::ascii_uppercase() const noexcept
 {
     infra_string string;
     for (const auto& point: points)
@@ -218,7 +218,7 @@ SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::ascii_uppercase() const
     }
     return string;
 }
-SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::strip_newlines() const
+SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::strip_newlines() const noexcept
 {
     infra_string string;
     for (const auto& point: points)
@@ -229,7 +229,7 @@ SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::strip_newlines() const
     }
     return string;
 }
-SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::normalize_newlines() const
+SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::normalize_newlines() const noexcept
 {
     infra_string string;
     for (code_point_container_type::size_type i = {}; i < points.size(); ++i)
@@ -252,7 +252,7 @@ SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::normalize_newlines() const
     for (auto& point: string.points) if (point == 0x000D) point = 0x000A;
     return string;
 }
-SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::strip_spaces() const
+SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::strip_spaces() const noexcept
 {
     infra_string strip_string;
     code_unit_container_type::size_type start_space = {};
@@ -270,7 +270,7 @@ SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::strip_spaces() const
     for (code_unit_container_type::size_type i = start_space; i < units.size() - end_space; ++i) strip_string.push_code_unit(units[i]);
     return strip_string;
 }
-SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::collapse_spaces() const
+SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::collapse_spaces() const noexcept
 {
     infra_string collapse_string;
     code_unit_container_type::size_type start_space = {};
@@ -299,13 +299,13 @@ SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::collapse_spaces() const
     }
     return collapse_string;
 }
-SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::collect(const std::function<const bool (const infra_code_point)>& cond) const
+SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::collect(const std::function<const bool (const infra_code_point)>& cond) const noexcept
 {
     infra_string collect_string;
     for (const auto& point: points) if (cond(point)) collect_string.push_code_point(point);
     return collect_string;
 }
-SOFTLOQ_WHATWG_INFRA_API void infra_string::skip_spaces(code_point_container_type::size_type& point_pos) const
+SOFTLOQ_WHATWG_INFRA_API void infra_string::skip_spaces(code_point_container_type::size_type& point_pos) const noexcept
 {
     for (; point_pos < points.size(); ++point_pos)
     {
@@ -313,7 +313,7 @@ SOFTLOQ_WHATWG_INFRA_API void infra_string::skip_spaces(code_point_container_typ
         break;
     }
 }
-SOFTLOQ_WHATWG_INFRA_API infra_string::tokens_type infra_string::split(const infra_code_point& delim) const
+SOFTLOQ_WHATWG_INFRA_API infra_string::tokens_type infra_string::split(const infra_code_point& delim) const noexcept
 {
     tokens_type tokens;
     infra_string token;
@@ -334,7 +334,7 @@ SOFTLOQ_WHATWG_INFRA_API infra_string::tokens_type infra_string::split(const inf
     }
     return tokens;
 }
-SOFTLOQ_WHATWG_INFRA_API infra_string::tokens_type infra_string::split_spaces() const
+SOFTLOQ_WHATWG_INFRA_API infra_string::tokens_type infra_string::split_spaces() const noexcept
 {
     tokens_type tokens;
     infra_string token;
@@ -361,7 +361,7 @@ SOFTLOQ_WHATWG_INFRA_API infra_string::tokens_type infra_string::split_spaces() 
     }
     return tokens;
 }
-SOFTLOQ_WHATWG_INFRA_API infra_string::tokens_type infra_string::split_commas() const
+SOFTLOQ_WHATWG_INFRA_API infra_string::tokens_type infra_string::split_commas() const noexcept
 {
     tokens_type tokens;
     infra_string token;
@@ -382,7 +382,7 @@ SOFTLOQ_WHATWG_INFRA_API infra_string::tokens_type infra_string::split_commas() 
     }
     return tokens;
 }
-SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::concatenate(const infra_list<infra_string>& list, infra_string separator)
+SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::concatenate(const infra_list<infra_string>& list, infra_string separator) noexcept
 {
     infra_string concatenate_string;
     for (const auto& string: list)
@@ -393,7 +393,7 @@ SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::concatenate(const infra_list
     return concatenate_string;
 }
 
-//--------------------------------//
+// //--------------------------------//
 
 // WHATWG primitive base overrides //
 
@@ -404,8 +404,8 @@ SOFTLOQ_WHATWG_INFRA_API void infra_string::print(std::ostream& out) const noexc
 
 // auxiliary member functions //
 
-SOFTLOQ_WHATWG_INFRA_API void infra_string::push_code_unit(const infra_code_unit& unit) { units.push_back(static_cast<std::uint16_t>(unit)); }
-SOFTLOQ_WHATWG_INFRA_API void infra_string::push_code_unit(const infra_code_point& point)
+SOFTLOQ_WHATWG_INFRA_API void infra_string::push_code_unit(const infra_code_unit& unit) noexcept { units.push_back(static_cast<std::uint16_t>(unit)); }
+SOFTLOQ_WHATWG_INFRA_API void infra_string::push_code_unit(const infra_code_point& point) noexcept
 {
     if (point >= 0x10000)
     {
@@ -414,8 +414,8 @@ SOFTLOQ_WHATWG_INFRA_API void infra_string::push_code_unit(const infra_code_poin
     }
     else units.push_back(static_cast<std::uint16_t>(point));
 }
-SOFTLOQ_WHATWG_INFRA_API void infra_string::push_code_point(const infra_code_unit& unit) { push_code_point(infra_code_point{unit}); }
-SOFTLOQ_WHATWG_INFRA_API void infra_string::push_code_point(const infra_code_point& point)
+SOFTLOQ_WHATWG_INFRA_API void infra_string::push_code_point(const infra_code_unit& unit) noexcept { push_code_point(infra_code_point{unit}); }
+SOFTLOQ_WHATWG_INFRA_API void infra_string::push_code_point(const infra_code_point& point) noexcept
 {
     if (point.is_trailing_surrogate() && points.size())
     {
@@ -433,22 +433,23 @@ SOFTLOQ_WHATWG_INFRA_API void infra_string::push_code_point(const infra_code_poi
 
 // WHATWG string comparison functions //
 
-SOFTLOQ_WHATWG_INFRA_API const bool infra_string::operator<(const infra_string& b) const { return is_code_unit_less_than(*this, b); }
-SOFTLOQ_WHATWG_INFRA_API const bool infra_string::operator==(const infra_string& b) const { return units == b.units; }
+SOFTLOQ_WHATWG_INFRA_API const bool infra_string::operator<(const infra_string& b) const noexcept { return is_code_unit_less_than(*this, b); }
+SOFTLOQ_WHATWG_INFRA_API const bool infra_string::operator>(const infra_string& b) const noexcept { return is_code_unit_less_than(b, *this); }
+SOFTLOQ_WHATWG_INFRA_API const bool infra_string::operator==(const infra_string& b) const noexcept { return units == b.units; }
 
 //------------------------------------//
 
 // WHATWG string comparison functions //
 
-SOFTLOQ_WHATWG_INFRA_API const bool is_prefix(const infra_string& a, const infra_string& b) { return a.size() <= b.size() && std::equal(a.cbegin(), a.cend(), b.cbegin()); }
-SOFTLOQ_WHATWG_INFRA_API const bool is_suffix(const infra_string& a, const infra_string& b) { return a.size() <= b.size() && std::equal(a.crbegin(), a.crend(), b.crbegin()); }
-SOFTLOQ_WHATWG_INFRA_API const bool is_code_unit_less_than(const infra_string& a, const infra_string& b)
+SOFTLOQ_WHATWG_INFRA_API const bool is_prefix(const infra_string& a, const infra_string& b) noexcept { return a.size() <= b.size() && std::equal(a.cbegin(), a.cend(), b.cbegin()); }
+SOFTLOQ_WHATWG_INFRA_API const bool is_suffix(const infra_string& a, const infra_string& b) noexcept { return a.size() <= b.size() && std::equal(a.crbegin(), a.crend(), b.crbegin()); }
+SOFTLOQ_WHATWG_INFRA_API const bool is_code_unit_less_than(const infra_string& a, const infra_string& b) noexcept
 {
     if (is_prefix(b, a)) return false;
     else if (is_prefix(a, b)) return true;
     else return std::equal(a.cbegin(), a.cend(), b.cbegin(), std::less_equal<infra_code_unit>());
 }
-SOFTLOQ_WHATWG_INFRA_API const bool is_ascii_iequal(const infra_string& a, const infra_string& b)
+SOFTLOQ_WHATWG_INFRA_API const bool is_ascii_iequal(const infra_string& a, const infra_string& b) noexcept
 {
     return a.size() == b.size() && std::equal(a.cbegin(), a.cend(), b.cbegin(), [](const auto& unit_a, const auto& unit_b) { return std::tolower(static_cast<std::uint16_t>(unit_a)) == std::tolower(static_cast<std::uint16_t>(unit_b)); });
 }

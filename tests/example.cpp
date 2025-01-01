@@ -74,7 +74,6 @@ int main()
 
     list.sort_ascending();
     list.sort_descending();
-    
     //------------------//
 
     return 0;

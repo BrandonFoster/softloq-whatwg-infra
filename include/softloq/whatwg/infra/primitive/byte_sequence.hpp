@@ -10,6 +10,8 @@
 #include "softloq/whatwg/infra/structure/sequence.hpp"
 #include "softloq/whatwg/infra/primitive/byte.hpp"
 
+#include <initializer_list>
+
 namespace softloq::whatwg
 {
 /** @brief WHATWG infra byte sequence primitive class */
@@ -37,6 +39,7 @@ public:
     // constructors //
 
     SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence() noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence(const std::initializer_list<infra_byte>& values) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence(const std::string& values) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence(const std::u8string& values) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence(const infra_byte_sequence& src) noexcept;
@@ -113,6 +116,7 @@ public:
     // WHATWG byte sequence comparison functions //
 
     SOFTLOQ_WHATWG_INFRA_API const bool operator<(const infra_byte_sequence& b) const noexcept;
+    SOFTLOQ_WHATWG_INFRA_API const bool operator>(const infra_byte_sequence& b) const noexcept;
     SOFTLOQ_WHATWG_INFRA_API const bool operator==(const infra_byte_sequence& b) const noexcept;
 
     //-------------------------------------------//
