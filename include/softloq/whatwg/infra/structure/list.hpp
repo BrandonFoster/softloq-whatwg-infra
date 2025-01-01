@@ -107,8 +107,8 @@ public:
     virtual const bool contains(const T& item) const noexcept;
     infra_list clone() const noexcept;
 
-    virtual void sort_ascending() noexcept;
-    virtual void sort_descending() noexcept;
+    void sort_ascending() noexcept;
+    void sort_descending() noexcept;
     
     //------------------//
 
