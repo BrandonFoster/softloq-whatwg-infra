@@ -53,27 +53,27 @@ public:
 
     // Member functions //
 
-    SOFTLOQ_WHATWG_INFRA_API std::string code_unit_str() const;
+    SOFTLOQ_WHATWG_INFRA_API std::string code_unit_str() const noexcept;
 
-    SOFTLOQ_WHATWG_INFRA_API const bool is_leading_surrogate() const;
-    SOFTLOQ_WHATWG_INFRA_API const bool is_trailing_surrogate() const;
-    SOFTLOQ_WHATWG_INFRA_API const bool is_surrogate() const;
-    SOFTLOQ_WHATWG_INFRA_API const bool is_scalar() const;
-    SOFTLOQ_WHATWG_INFRA_API const bool is_nonchar() const;
-    SOFTLOQ_WHATWG_INFRA_API const bool is_ascii() const;
-    SOFTLOQ_WHATWG_INFRA_API const bool is_ascii_tab_or_newline() const;
-    SOFTLOQ_WHATWG_INFRA_API const bool is_whitespace() const;
-    SOFTLOQ_WHATWG_INFRA_API const bool is_C0_control() const;
-    SOFTLOQ_WHATWG_INFRA_API const bool is_C0_control_or_space() const;
-    SOFTLOQ_WHATWG_INFRA_API const bool is_control() const;
-    SOFTLOQ_WHATWG_INFRA_API const bool is_digit() const;
-    SOFTLOQ_WHATWG_INFRA_API const bool is_upper_hex() const;
-    SOFTLOQ_WHATWG_INFRA_API const bool is_lower_hex() const;
-    SOFTLOQ_WHATWG_INFRA_API const bool is_hex() const;
-    SOFTLOQ_WHATWG_INFRA_API const bool is_upper() const;
-    SOFTLOQ_WHATWG_INFRA_API const bool is_lower() const;
-    SOFTLOQ_WHATWG_INFRA_API const bool is_alpha() const;
-    SOFTLOQ_WHATWG_INFRA_API const bool is_alnum() const;
+    SOFTLOQ_WHATWG_INFRA_API const bool is_leading_surrogate() const noexcept;
+    SOFTLOQ_WHATWG_INFRA_API const bool is_trailing_surrogate() const noexcept;
+    SOFTLOQ_WHATWG_INFRA_API const bool is_surrogate() const noexcept;
+    SOFTLOQ_WHATWG_INFRA_API const bool is_scalar() const noexcept;
+    SOFTLOQ_WHATWG_INFRA_API const bool is_nonchar() const noexcept;
+    SOFTLOQ_WHATWG_INFRA_API const bool is_ascii() const noexcept;
+    SOFTLOQ_WHATWG_INFRA_API const bool is_ascii_tab_or_newline() const noexcept;
+    SOFTLOQ_WHATWG_INFRA_API const bool is_whitespace() const noexcept;
+    SOFTLOQ_WHATWG_INFRA_API const bool is_C0_control() const noexcept;
+    SOFTLOQ_WHATWG_INFRA_API const bool is_C0_control_or_space() const noexcept;
+    SOFTLOQ_WHATWG_INFRA_API const bool is_control() const noexcept;
+    SOFTLOQ_WHATWG_INFRA_API const bool is_digit() const noexcept;
+    SOFTLOQ_WHATWG_INFRA_API const bool is_upper_hex() const noexcept;
+    SOFTLOQ_WHATWG_INFRA_API const bool is_lower_hex() const noexcept;
+    SOFTLOQ_WHATWG_INFRA_API const bool is_hex() const noexcept;
+    SOFTLOQ_WHATWG_INFRA_API const bool is_upper() const noexcept;
+    SOFTLOQ_WHATWG_INFRA_API const bool is_lower() const noexcept;
+    SOFTLOQ_WHATWG_INFRA_API const bool is_alpha() const noexcept;
+    SOFTLOQ_WHATWG_INFRA_API const bool is_alnum() const noexcept;
 
     //------------------//
 

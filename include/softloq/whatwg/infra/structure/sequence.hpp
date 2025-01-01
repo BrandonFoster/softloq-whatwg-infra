@@ -102,7 +102,7 @@ public:
 
     // WHATWG sequence comparison functions //
 
-    const bool operator==(const infra_sequence<T>& b) const;
+    const bool operator==(const infra_sequence<T>& b) const noexcept;
 
     //--------------------------------------//
 

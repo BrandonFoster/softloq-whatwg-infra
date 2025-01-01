@@ -84,7 +84,7 @@ template <class T> void infra_sequence<T>::print(std::ostream& out) const noexce
 
 // WHATWG sequence comparison functions //
 
-template <class T> const bool infra_sequence<T>::operator==(const infra_sequence<T>& b) const { return values == b.values; }
+template <class T> const bool infra_sequence<T>::operator==(const infra_sequence<T>& b) const noexcept { return values == b.values; }
 
 //--------------------------------------//
 }
