@@ -117,8 +117,20 @@ SOFTLOQ_WHATWG_INFRA_API const bool infra_code_unit::is_trailing_surrogate() con
     #endif
     return 0xDC00 <= value && value <= 0xDFFF;
 }
-SOFTLOQ_WHATWG_INFRA_API const bool infra_code_unit::is_surrogate() const noexcept { return is_leading_surrogate() || is_trailing_surrogate(); }
-SOFTLOQ_WHATWG_INFRA_API const bool infra_code_unit::is_scalar() const noexcept { return !is_surrogate(); }
+SOFTLOQ_WHATWG_INFRA_API const bool infra_code_unit::is_surrogate() const noexcept
+{
+    #ifdef SOFTLOQ_MULTITHREADING
+    std::lock_guard<std::mutex> lock(mtx);
+    #endif
+    return (0xD800 <= value && value <= 0xD8FF) || (0xDC00 <= value && value <= 0xDFFF);
+}
+SOFTLOQ_WHATWG_INFRA_API const bool infra_code_unit::is_scalar() const noexcept
+{
+    #ifdef SOFTLOQ_MULTITHREADING
+    std::lock_guard<std::mutex> lock(mtx);
+    #endif
+    return !((0xD800 <= value && value <= 0xD8FF) || (0xDC00 <= value && value <= 0xDFFF));
+}
 SOFTLOQ_WHATWG_INFRA_API const bool infra_code_unit::is_nonchar() const noexcept
 {
     #ifdef SOFTLOQ_MULTITHREADING
