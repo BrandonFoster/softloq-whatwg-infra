@@ -2,10 +2,33 @@
 
 #include <iostream>
 #include <iomanip>
+#include <mutex>
+#include <vector>
+
+class ThreadSafeCounter {
+private:
+    int value;
+    mutable std::mutex mtx;
+
+public:
+    ThreadSafeCounter() : value(0) {}
+
+    void increment() {
+        std::lock_guard<std::mutex> lock(mtx);
+        value += 1;
+    }
+
+    int get() const {
+        std::lock_guard<std::mutex> lock(mtx);
+        return value;
+    }
+};
 
 int main()
 {
     using namespace softloq::whatwg;
+    infra_bool b{true};
+    std::cout << b << std::endl;
 
     // infra list constructors //
     infra_list<infra_byte> list1; // default constructor
@@ -75,6 +98,32 @@ int main()
     list.sort_ascending();
     list.sort_descending();
     //------------------//
+
+#ifndef SOFTLOQ_MULTITHREADING
+    std::cout << "Testing" << std::endl;
+#endif
+
+
+    ThreadSafeCounter counter;
+
+    // Simulate concurrent access
+    auto increment_task = [&counter]() {
+        for (int i = 0; i < 10000; ++i) {
+            counter.increment();
+        }
+    };
+
+    std::vector<std::thread> threads;
+    for (int i = 0; i < 1000; ++i) {
+        threads.emplace_back(increment_task);
+    }
+
+    for (auto& thread : threads) {
+        thread.join();
+    }
+
+    std::cout << "Final value: " << counter.get() << std::endl;
+    
 
     return 0;
 }
