@@ -27,7 +27,7 @@ public:
 int main()
 {
     using namespace softloq::whatwg;
-    infra_bool b{true};
+    infra_bool b{std::move(infra_bool{true})};
     std::cout << b << std::endl;
 
     // infra list constructors //
