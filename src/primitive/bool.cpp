@@ -8,26 +8,13 @@
 
 namespace softloq::whatwg
 {
-// WHATWG primitive base overrides //
-
-SOFTLOQ_WHATWG_INFRA_API const infra_primitive_type infra_bool::primitive_type() const noexcept { return infra_primitive_type::infra_bool; }
-SOFTLOQ_WHATWG_INFRA_API void infra_bool::print(std::ostream& out) const noexcept
-{
-    #ifdef SOFTLOQ_MULTITHREADING
-    std::lock_guard<std::mutex> lock(mtx);
-    #endif
-    out << std::boolalpha << value;
-}
-
-//---------------------------------//
-
-// Constructors //
+// constructors //
 
 SOFTLOQ_WHATWG_INFRA_API infra_bool::infra_bool() noexcept : value(false) {}
 SOFTLOQ_WHATWG_INFRA_API infra_bool::infra_bool(const bool value) noexcept : value(value) {}
 #ifdef SOFTLOQ_MULTITHREADING
 SOFTLOQ_WHATWG_INFRA_API infra_bool::infra_bool(const infra_bool& src) noexcept : infra_bool(src, std::lock_guard<std::mutex>(src.mtx)) {}
-SOFTLOQ_WHATWG_INFRA_API infra_bool::infra_bool(infra_bool&& src) noexcept : infra_bool(src, std::lock_guard<std::mutex>(src.mtx)) {}
+SOFTLOQ_WHATWG_INFRA_API infra_bool::infra_bool(infra_bool&& src) noexcept : infra_bool(std::move(src), std::lock_guard<std::mutex>(src.mtx)) {}
 SOFTLOQ_WHATWG_INFRA_API infra_bool::infra_bool(const infra_bool& src, const std::lock_guard<std::mutex>&) noexcept : value(src.value) {}
 SOFTLOQ_WHATWG_INFRA_API infra_bool::infra_bool(infra_bool&& src, const std::lock_guard<std::mutex>&) noexcept : value(std::move(src.value)) {}
 #else
@@ -38,7 +25,7 @@ SOFTLOQ_WHATWG_INFRA_API infra_bool::~infra_bool() noexcept {}
 
 //--------------//
 
-// Assignments //
+// assignments //
 
 SOFTLOQ_WHATWG_INFRA_API infra_bool& infra_bool::operator=(const bool value) noexcept
 {
@@ -67,7 +54,7 @@ SOFTLOQ_WHATWG_INFRA_API infra_bool& infra_bool::operator=(infra_bool&& src) noe
 
 //-------------//
 
-// Conversions //
+// conversions //
 
 SOFTLOQ_WHATWG_INFRA_API infra_bool::operator const bool() const noexcept
 {
@@ -78,4 +65,17 @@ SOFTLOQ_WHATWG_INFRA_API infra_bool::operator const bool() const noexcept
 }
 
 //-------------//
+
+// WHATWG primitive base overrides //
+
+SOFTLOQ_WHATWG_INFRA_API const infra_primitive_type infra_bool::primitive_type() const noexcept { return infra_primitive_type::infra_bool; }
+SOFTLOQ_WHATWG_INFRA_API void infra_bool::print(std::ostream& out) const noexcept
+{
+    #ifdef SOFTLOQ_MULTITHREADING
+    std::lock_guard<std::mutex> lock(mtx);
+    #endif
+    out << std::boolalpha << value;
+}
+
+//---------------------------------//
 }
