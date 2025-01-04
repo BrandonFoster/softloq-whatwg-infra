@@ -91,7 +91,7 @@ public:
     T& operator[](const size_type index) noexcept;
     const T& operator[](const size_type index) const noexcept;
     
-    //------------------//
+    //----------------------------------//
 
     // WHATWG structure base overrides //
 
