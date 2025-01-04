@@ -453,18 +453,150 @@ SOFTLOQ_WHATWG_INFRA_API infra_string infra_string::concatenate(const infra_list
     return concatenate_string;
 }
 
-// //--------------------------------//
+//--------------------------------//
+
+// WHATWG sequence member functions //
+
+SOFTLOQ_WHATWG_INFRA_API const infra_code_unit& infra_string::front_code_unit() const noexcept
+{
+    return units.front();
+}
+SOFTLOQ_WHATWG_INFRA_API const infra_code_point& infra_string::front_code_point() const noexcept
+{
+    return points.front();
+}
+SOFTLOQ_WHATWG_INFRA_API const infra_code_unit& infra_string::back_code_unit() const noexcept
+{
+    return units.back();
+}
+SOFTLOQ_WHATWG_INFRA_API const infra_code_point& infra_string::back_code_point() const noexcept
+{
+    return points.back();
+}
+
+SOFTLOQ_WHATWG_INFRA_API infra_string& infra_string::operator+=(const std::string& values) noexcept
+{
+    for (const auto& value: values)
+    {
+        push_code_unit(infra_code_unit{static_cast<std::uint8_t>(value)});
+        push_code_point(infra_code_point{static_cast<std::uint8_t>(value)});
+    }
+    return *this;
+}
+SOFTLOQ_WHATWG_INFRA_API infra_string& infra_string::operator+=(const infra_string& values) noexcept
+{
+    for (const auto& value: values)
+    {
+        push_code_unit(value);
+        push_code_point(value);
+    }
+    return *this;
+}
+SOFTLOQ_WHATWG_INFRA_API infra_string& infra_string::operator+=(const infra_code_unit& unit) noexcept
+{
+    push_code_unit(unit);
+    push_code_point(unit);
+    return *this;
+}
+SOFTLOQ_WHATWG_INFRA_API infra_string& infra_string::operator+=(const infra_code_point& point) noexcept
+{
+    push_code_unit(point);
+    push_code_point(point);
+    return *this;
+}
+
+SOFTLOQ_WHATWG_INFRA_API void infra_string::push_back(const std::string& values) noexcept
+{
+    for (const auto& value: values)
+    {
+        push_code_unit(infra_code_unit{static_cast<std::uint8_t>(value)});
+        push_code_point(infra_code_point{static_cast<std::uint8_t>(value)});
+    }
+}
+SOFTLOQ_WHATWG_INFRA_API void infra_string::push_back(const infra_string& values) noexcept
+{
+    for (const auto& value: values)
+    {
+        push_code_unit(value);
+        push_code_point(value);
+    }
+}
+SOFTLOQ_WHATWG_INFRA_API void infra_string::push_back(const infra_code_unit& unit) noexcept
+{
+    push_code_unit(unit);
+    push_code_point(unit);
+}
+SOFTLOQ_WHATWG_INFRA_API void infra_string::push_back(const infra_code_point& point) noexcept
+{
+    push_code_unit(point);
+    push_code_point(point);
+}
+
+SOFTLOQ_WHATWG_INFRA_API void infra_string::pop_code_unit() noexcept
+{
+    if (units.size() >= 2 &&  (++units.rbegin())->is_leading_surrogate() && units.rbegin()->is_trailing_surrogate())
+    {
+        units.pop_back();
+        points.back() = units.back();
+    }
+    else
+    {
+        units.pop_back();
+        points.pop_back();
+    }
+}
+SOFTLOQ_WHATWG_INFRA_API void infra_string::pop_code_point() noexcept
+{
+    if (points.back() >= 0x010000)
+    {
+        units.pop_back();
+        units.pop_back();
+        points.pop_back();
+    }
+    else
+    {
+        units.pop_back();
+        points.pop_back();
+    }
+}
+
+SOFTLOQ_WHATWG_INFRA_API const bool infra_string::empty() const noexcept
+{
+    return units.size();
+}
+SOFTLOQ_WHATWG_INFRA_API void infra_string::clear() noexcept
+{
+    units.clear();
+    points.clear();
+}
+
+SOFTLOQ_WHATWG_INFRA_API const infra_code_unit& infra_string::operator[](const code_unit_sequence_type::size_type index) const noexcept
+{
+    return units[index];
+}
+
+//----------------------------------//
+
 
 // WHATWG primitive base overrides //
 
-SOFTLOQ_WHATWG_INFRA_API const infra_primitive_type infra_string::primitive_type() const noexcept { return infra_primitive_type::infra_string; }
-SOFTLOQ_WHATWG_INFRA_API void infra_string::print(std::ostream& out) const noexcept { units.print(out); }
+SOFTLOQ_WHATWG_INFRA_API const infra_primitive_type infra_string::primitive_type() const noexcept
+{
+    return infra_primitive_type::infra_string;
+}
+SOFTLOQ_WHATWG_INFRA_API void infra_string::print(std::ostream& out) const noexcept
+{
+    units.print(out);
+}
 
 //---------------------------------//
 
 // auxiliary member functions //
 
-SOFTLOQ_WHATWG_INFRA_API void infra_string::push_code_unit(const infra_code_unit& unit) noexcept { units.push_back(static_cast<std::uint16_t>(unit)); }
+SOFTLOQ_WHATWG_INFRA_API void infra_string::push_code_unit(const infra_code_unit& unit) noexcept
+{
+    units.push_back(static_cast<std::uint16_t>(unit));
+}
 SOFTLOQ_WHATWG_INFRA_API void infra_string::push_code_unit(const infra_code_point& point) noexcept
 {
     if (point >= 0x10000)
@@ -474,7 +606,10 @@ SOFTLOQ_WHATWG_INFRA_API void infra_string::push_code_unit(const infra_code_poin
     }
     else units.push_back(static_cast<std::uint16_t>(point));
 }
-SOFTLOQ_WHATWG_INFRA_API void infra_string::push_code_point(const infra_code_unit& unit) noexcept { push_code_point(infra_code_point{unit}); }
+SOFTLOQ_WHATWG_INFRA_API void infra_string::push_code_point(const infra_code_unit& unit) noexcept
+{
+    push_code_point(infra_code_point{unit});
+}
 SOFTLOQ_WHATWG_INFRA_API void infra_string::push_code_point(const infra_code_point& point) noexcept
 {
     if (point.is_trailing_surrogate() && points.size())
@@ -493,16 +628,56 @@ SOFTLOQ_WHATWG_INFRA_API void infra_string::push_code_point(const infra_code_poi
 
 // WHATWG string comparison functions //
 
-SOFTLOQ_WHATWG_INFRA_API const bool infra_string::operator<(const infra_string& b) const noexcept { return is_code_unit_less_than(*this, b); }
-SOFTLOQ_WHATWG_INFRA_API const bool infra_string::operator>(const infra_string& b) const noexcept { return is_code_unit_less_than(b, *this); }
-SOFTLOQ_WHATWG_INFRA_API const bool infra_string::operator==(const infra_string& b) const noexcept { return units == b.units; }
+SOFTLOQ_WHATWG_INFRA_API const bool infra_string::operator<(const infra_string& b) const noexcept
+{
+    return is_code_unit_less_than(*this, b);
+}
+SOFTLOQ_WHATWG_INFRA_API const bool infra_string::operator>(const infra_string& b) const noexcept
+{
+    return is_code_unit_less_than(b, *this);
+}
+SOFTLOQ_WHATWG_INFRA_API const bool infra_string::operator==(const infra_string& b) const noexcept
+{
+    return units == b.units;
+}
 
 //------------------------------------//
 
+// auxiliary functions //
+
+SOFTLOQ_WHATWG_INFRA_API infra_string operator+(const infra_string& a, const std::string& b) noexcept
+{
+    infra_string combine{a};
+    return combine += b;
+}
+SOFTLOQ_WHATWG_INFRA_API infra_string operator+(const infra_string& a, const infra_string& b) noexcept
+{
+    infra_string combine{a};
+    return combine += b;
+}
+SOFTLOQ_WHATWG_INFRA_API infra_string operator+(const infra_string& a, const infra_code_unit& b) noexcept
+{
+    infra_string combine{a};
+    return combine += b;
+}
+SOFTLOQ_WHATWG_INFRA_API infra_string operator+(const infra_string& a, const infra_code_point& b) noexcept
+{
+    infra_string combine{a};
+    return combine += b;
+}
+
+//---------------------//
+
 // WHATWG string comparison functions //
 
-SOFTLOQ_WHATWG_INFRA_API const bool is_prefix(const infra_string& a, const infra_string& b) noexcept { return a.size() <= b.size() && std::equal(a.cbegin(), a.cend(), b.cbegin()); }
-SOFTLOQ_WHATWG_INFRA_API const bool is_suffix(const infra_string& a, const infra_string& b) noexcept { return a.size() <= b.size() && std::equal(a.crbegin(), a.crend(), b.crbegin()); }
+SOFTLOQ_WHATWG_INFRA_API const bool is_prefix(const infra_string& a, const infra_string& b) noexcept
+{
+    return a.size() <= b.size() && std::equal(a.cbegin(), a.cend(), b.cbegin());
+}
+SOFTLOQ_WHATWG_INFRA_API const bool is_suffix(const infra_string& a, const infra_string& b) noexcept
+{
+    return a.size() <= b.size() && std::equal(a.crbegin(), a.crend(), b.crbegin());
+}
 SOFTLOQ_WHATWG_INFRA_API const bool is_code_unit_less_than(const infra_string& a, const infra_string& b) noexcept
 {
     if (is_prefix(b, a)) return false;

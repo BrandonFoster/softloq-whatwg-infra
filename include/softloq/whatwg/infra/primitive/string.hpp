@@ -14,9 +14,6 @@
 
 #include <initializer_list>
 #include <functional>
-#ifdef SOFTLOQ_MULTITHREADING
-#include <mutex>
-#endif
 
 namespace softloq::whatwg
 {
@@ -157,12 +154,14 @@ public:
     SOFTLOQ_WHATWG_INFRA_API const infra_code_point& back_code_point() const noexcept;
 
     SOFTLOQ_WHATWG_INFRA_API infra_string& operator+=(const std::string& values) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API infra_string& operator+=(const infra_string& values) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_string& operator+=(const infra_code_unit& unit) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_string& operator+=(infra_code_unit&& unit) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_string& operator+=(const infra_code_point& point) noexcept;
     SOFTLOQ_WHATWG_INFRA_API infra_string& operator+=(infra_code_point&& point) noexcept;
     
     SOFTLOQ_WHATWG_INFRA_API void push_back(const std::string& values) noexcept;
+    SOFTLOQ_WHATWG_INFRA_API void push_back(const infra_string& values) noexcept;
     SOFTLOQ_WHATWG_INFRA_API void push_back(const infra_code_unit& unit) noexcept;
     SOFTLOQ_WHATWG_INFRA_API void push_back(infra_code_unit&& unit) noexcept;
     SOFTLOQ_WHATWG_INFRA_API void push_back(const infra_code_point& point) noexcept;
@@ -200,14 +199,10 @@ private:
     // auxiliary member functions //
 
     SOFTLOQ_WHATWG_INFRA_API void push_code_unit(const infra_code_unit& unit) noexcept;
-    SOFTLOQ_WHATWG_INFRA_API void push_code_unit(infra_code_unit&& unit) noexcept;
     SOFTLOQ_WHATWG_INFRA_API void push_code_unit(const infra_code_point& point) noexcept;
-    SOFTLOQ_WHATWG_INFRA_API void push_code_unit(infra_code_point&& point) noexcept;
 
     SOFTLOQ_WHATWG_INFRA_API void push_code_point(const infra_code_unit& unit) noexcept;
-    SOFTLOQ_WHATWG_INFRA_API void push_code_point(infra_code_unit&& unit) noexcept;
     SOFTLOQ_WHATWG_INFRA_API void push_code_point(const infra_code_point& point) noexcept;
-    SOFTLOQ_WHATWG_INFRA_API void push_code_point(infra_code_point&& point) noexcept;
 
     //----------------------------//
 };
@@ -215,9 +210,9 @@ private:
 // auxiliary functions //
 
 SOFTLOQ_WHATWG_INFRA_API infra_string operator+(const infra_string& a, const std::string& b) noexcept;
+SOFTLOQ_WHATWG_INFRA_API infra_string operator+(const infra_string& a, const infra_string& b) noexcept;
 SOFTLOQ_WHATWG_INFRA_API infra_string operator+(const infra_string& a, const infra_code_unit& b) noexcept;
 SOFTLOQ_WHATWG_INFRA_API infra_string operator+(const infra_string& a, const infra_code_point& b) noexcept;
-SOFTLOQ_WHATWG_INFRA_API infra_string operator+(const infra_string& a, const infra_string& b) noexcept;
 
 //---------------------//
 
