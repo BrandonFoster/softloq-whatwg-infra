@@ -301,4 +301,15 @@ template <class T> const bool infra_sequence<T>::operator==(const infra_sequence
 }
 
 //--------------------------------------//
+
+template <class T> infra_sequence<T> operator+(const infra_sequence<T>& a, const infra_sequence<T>& b) noexcept
+{
+    infra_sequence<T> combine{a};
+    return combine += b;
+}
+template <class T> infra_sequence<T> operator+(const infra_sequence<T>& a, const T& b) noexcept
+{
+    infra_sequence<T> combine{a};
+    return combine += b;
+}
 }
