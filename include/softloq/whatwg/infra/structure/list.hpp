@@ -12,10 +12,13 @@
 #include <initializer_list>
 #include <functional>
 #include <list>
+#ifdef SOFTLOQ_MULTITHREADING
+#include <mutex>
+#endif
 
 namespace softloq::whatwg
 {
-/** @brief WHATWG infra sequence data structure class. */
+/** @brief WHATWG infra sequence data structure class (https://infra.spec.whatwg.org/#lists). Thread-safe support when SOFTLOQ_MULTITHREADING is enabled. */
 template <class T> class infra_list : public infra_structure_base
 {
 public:
@@ -39,9 +42,19 @@ public:
 
     // constructors //
 
+    /** @brief Constructs an empty WHATWG infra list. */
     infra_list() noexcept;
+    /** 
+     * @brief Constructs a WHATWG infra list with an initializer list of values.
+     * @param values The initializer list for the list. */
     infra_list(const std::initializer_list<T>& values) noexcept;
+    /** 
+     * @brief Constructs a WHATWG infra list from another infra list.
+     * @param values The infra list that will be copied. */
     infra_list(const infra_list& src) noexcept;
+    /** 
+     * @brief Constructs a WHATWG infra list from another infra list.
+     * @param values The infra list that will be moved. */
     infra_list(infra_list&& src) noexcept;
     ~infra_list() noexcept;
 
@@ -49,7 +62,13 @@ public:
 
     // assignments //
 
+    /** 
+     * @brief Assigns the WHATWG infra list from another infra list.
+     * @param values The infra list that will be copied. */
     infra_list& operator=(const infra_list& src) noexcept;
+    /** 
+     * @brief Assigns the WHATWG infra list from another infra list.
+     * @param values The infra list that will be moved. */
     infra_list& operator=(infra_list&& src) noexcept;
 
     //-------------//
@@ -119,8 +138,17 @@ public:
     
     //---------------------------------//
 
-protected:
+private:
     std::list<T> values;
+
+    #ifdef SOFTLOQ_MULTITHREADING
+    mutable std::mutex mtx;
+    
+    // used for threadsafe copy construction
+    infra_list(const infra_list& src, const std::lock_guard<std::mutex>&) noexcept;
+    // used for threadsafe move construction
+    infra_list(infra_list&& src, const std::lock_guard<std::mutex>&) noexcept;
+    #endif
 };
 }
 
