@@ -30,7 +30,13 @@ template <class T> infra_queue<T>& infra_queue<T>::operator=(infra_queue&& src) 
 template <class T> std::optional<T> infra_queue<T>::peek() const noexcept { return infra_list<T>::empty() ? std::optional<T>{} : infra_list<T>::front(); }
 template <class T> void infra_queue<T>::enqueue(const T& item) noexcept { infra_list<T>::push_back(T); }
 template <class T> void infra_queue<T>::enqueue(T&& item) noexcept { infra_list<T>::push_back(std::move(T)); }
-template <class T> std::optional<T> infra_queue<T>::dequeue() noexcept { infra_list<T>::pop_front(); }
+template <class T> std::optional<T> infra_queue<T>::dequeue() noexcept
+{
+    if (infra_list<T>::empty()) return std::optional<T>{};
+    std::optional<T> front = infra_list<T>::front();
+    infra_list<T>::pop_front();
+    return front;
+}
 
 //------------------//
 }

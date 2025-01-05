@@ -599,7 +599,11 @@ SOFTLOQ_WHATWG_INFRA_API void infra_string::push_code_unit(const infra_code_unit
 }
 SOFTLOQ_WHATWG_INFRA_API void infra_string::push_code_unit(const infra_code_point& point) noexcept
 {
-    if (point >= 0x10000)
+    if (!point.is_valid())
+    {
+        units.push_back(0xFFFD);
+    }
+    else if (point >= 0x10000)
     {
         units.push_back(0xD800 + ((point - 0x10000) >> 10));
         units.push_back(0xDC00 + ((point - 0x10000) & 0x3FF));

@@ -60,6 +60,7 @@ SOFTLOQ_WHATWG_INFRA_API infra_code_unit& infra_code_unit::operator=(const infra
 {
     #ifdef SOFTLOQ_MULTITHREADING
     std::lock_guard<std::mutex> lock(mtx);
+    std::lock_guard<std::mutex> src_lock(src.mtx);
     #endif
     value = src.value;
     return *this;
@@ -68,6 +69,7 @@ SOFTLOQ_WHATWG_INFRA_API infra_code_unit& infra_code_unit::operator=(infra_code_
 {
     #ifdef SOFTLOQ_MULTITHREADING
     std::lock_guard<std::mutex> lock(mtx);
+    std::lock_guard<std::mutex> src_lock(src.mtx);
     #endif
     value = std::move(src.value);
     return *this;

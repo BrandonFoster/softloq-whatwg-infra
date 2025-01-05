@@ -136,7 +136,7 @@ private:
     std::vector<T> values;
 
     #ifdef SOFTLOQ_MULTITHREADING
-    mutable std::mutex mtx;
+    mutable std::mutex iterator_mtx, main_mtx;
     
     // used for threadsafe copy construction
     infra_sequence(const infra_sequence& src, const std::lock_guard<std::mutex>&) noexcept;
