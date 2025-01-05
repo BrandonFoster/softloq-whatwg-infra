@@ -11,10 +11,13 @@
 
 #include <initializer_list>
 #include <vector>
+#ifdef SOFTLOQ_MULTITHREADING
+#include <mutex>
+#endif
 
 namespace softloq::whatwg
 {
-/** @brief WHATWG infra sequence data structure class. */
+/** @brief WHATWG infra sequence data structure class. Thread-safe support when SOFTLOQ_MULTITHREADING is enabled. */
 template <class T> class infra_sequence : public infra_structure_base
 {
 public:
@@ -38,9 +41,19 @@ public:
 
     // constructors //
 
+    /** @brief Constructs an empty WHATWG infra sequence. */
     infra_sequence() noexcept;
+    /** 
+     * @brief Constructs a WHATWG infra sequence with an initializer list of values.
+     * @param values The initializer list for the sequence. */
     infra_sequence(const std::initializer_list<T>& values) noexcept;
+    /** 
+     * @brief Constructs a WHATWG infra sequence from another infra sequence.
+     * @param values The infra sequence that will be copied. */
     infra_sequence(const infra_sequence& src) noexcept;
+    /** 
+     * @brief Constructs a WHATWG infra sequence from another infra sequence.
+     * @param values The infra sequence that will be moved. */
     infra_sequence(infra_sequence&& src) noexcept;
     ~infra_sequence() noexcept;
 
@@ -48,7 +61,13 @@ public:
 
     // assignments //
 
+    /** 
+     * @brief Assigns the WHATWG infra sequence from another infra sequence.
+     * @param values The infra sequence that will be copied. */
     infra_sequence& operator=(const infra_sequence& src) noexcept;
+    /** 
+     * @brief Assigns the WHATWG infra sequence from another infra sequence.
+     * @param values The infra sequence that will be moved. */
     infra_sequence& operator=(infra_sequence&& src) noexcept;
 
     //-------------//
@@ -80,6 +99,13 @@ public:
     T& back() noexcept;
     const T& back() const noexcept;
     
+    infra_sequence& operator+=(const infra_sequence& sequence) noexcept;
+
+    infra_sequence& operator+=(const T& item) noexcept;
+    infra_sequence& operator+=(T&& item) noexcept;
+
+    void extend(const infra_sequence& sequence) noexcept;
+
     void push_back(const T& item) noexcept;
     void push_back(T&& item) noexcept;
     void pop_back() noexcept;
@@ -108,7 +134,19 @@ public:
 
 private:
     std::vector<T> values;
+
+    #ifdef SOFTLOQ_MULTITHREADING
+    mutable std::mutex mtx;
+    
+    // used for threadsafe copy construction
+    infra_sequence(const infra_sequence& src, const std::lock_guard<std::mutex>&) noexcept;
+    // used for threadsafe move construction
+    infra_sequence(infra_sequence&& src, const std::lock_guard<std::mutex>&) noexcept;
+    #endif
 };
+
+template <class T> infra_sequence<T> operator+(const infra_sequence<T>& a, const infra_sequence<T>& b) noexcept;
+template <class T> infra_sequence<T> operator+(const infra_sequence<T>& a, const T& b) noexcept;
 }
 
 #include "softloq/whatwg/infra/structure/sequence.tpp"
