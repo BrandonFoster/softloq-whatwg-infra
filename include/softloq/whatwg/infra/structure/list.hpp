@@ -138,7 +138,7 @@ public:
     
     //---------------------------------//
 
-private:
+protected:
     std::list<T> values;
 
     #ifdef SOFTLOQ_MULTITHREADING
