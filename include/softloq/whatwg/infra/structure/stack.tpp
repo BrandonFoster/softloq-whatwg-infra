@@ -30,7 +30,13 @@ template <class T> infra_stack<T>& infra_stack<T>::operator=(infra_stack&& src) 
 template <class T> std::optional<T> infra_stack<T>::peek() const noexcept { return infra_list<T>::empty() ? std::optional<T>{} : infra_list<T>::back(); }
 template <class T> void infra_stack<T>::push(const T& item) noexcept { infra_list<T>::push_back(T); }
 template <class T> void infra_stack<T>::push(T&& item) noexcept { infra_list<T>::push_back(std::move(T)); }
-template <class T> std::optional<T> infra_stack<T>::pop() noexcept { infra_list<T>::pop_back(); }
+template <class T> std::optional<T> infra_stack<T>::pop() noexcept
+{
+    if (infra_list<T>::empty()) return std::optional<T>{};
+    std::optional<T> back = infra_list<T>::back();
+    infra_list<T>::pop_back();
+    return back;
+}
 
 //------------------//
 }
