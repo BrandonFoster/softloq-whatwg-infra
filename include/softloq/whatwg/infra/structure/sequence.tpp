@@ -31,8 +31,8 @@ template <class T> infra_sequence<T>::~infra_sequence() noexcept {}
 template <class T> infra_sequence<T>& infra_sequence<T>::operator=(const infra_sequence& src) noexcept
 {
     #ifdef SOFTLOQ_MULTITHREADING
-    std::lock_guard<std::mutex> lock1(mtx);
-    std::lock_guard<std::mutex> lock2(src.mtx);
+    std::lock_guard<std::mutex> lock(mtx);
+    std::lock_guard<std::mutex> src_lock(src.mtx);
     #endif
     values = src.values;
     return *this;
@@ -40,8 +40,8 @@ template <class T> infra_sequence<T>& infra_sequence<T>::operator=(const infra_s
 template <class T> infra_sequence<T>& infra_sequence<T>::operator=(infra_sequence&& src) noexcept
 {
     #ifdef SOFTLOQ_MULTITHREADING
-    std::lock_guard<std::mutex> lock1(mtx);
-    std::lock_guard<std::mutex> lock2(src.mtx);
+    std::lock_guard<std::mutex> lock(mtx);
+    std::lock_guard<std::mutex> src_lock(src.mtx);
     #endif
     values = std::move(src.values);
     return *this;
@@ -175,10 +175,10 @@ template <class T> const T& infra_sequence<T>::back() const noexcept
 template <class T> infra_sequence<T>& infra_sequence<T>::operator+=(const infra_sequence& sequence) noexcept
 {
     #ifdef SOFTLOQ_MULTITHREADING
-    std::lock_guard<std::mutex> lock1(mtx);
-    std::lock_guard<std::mutex> lock2(sequence.mtx);
+    std::lock_guard<std::mutex> lock(mtx);
+    std::lock_guard<std::mutex> sequence_lock(sequence.mtx);
     #endif
-    for (const auto& item: sequence) values.push_back(item);
+    for (const auto& item: sequence.values) values.push_back(item);
     return *this;
 }
 
@@ -202,10 +202,10 @@ template <class T> infra_sequence<T>& infra_sequence<T>::operator+=(T&& item) no
 template <class T> void infra_sequence<T>::extend(const infra_sequence<T>& sequence) noexcept
 {
     #ifdef SOFTLOQ_MULTITHREADING
-    std::lock_guard<std::mutex> lock1(mtx);
-    std::lock_guard<std::mutex> lock2(sequence.mtx);
+    std::lock_guard<std::mutex> lock(mtx);
+    std::lock_guard<std::mutex> sequence_lock(sequence.mtx);
     #endif
-    for (const auto& item: sequence) values.push_back(item);
+    for (const auto& item: sequence.values) values.push_back(item);
     return *this;
 }
 
@@ -294,11 +294,22 @@ template <class T> void infra_sequence<T>::print(std::ostream& out) const noexce
 template <class T> const bool infra_sequence<T>::operator==(const infra_sequence<T>& b) const noexcept
 {
     #ifdef SOFTLOQ_MULTITHREADING
-    std::lock_guard<std::mutex> lock1(mtx);
-    std::lock_guard<std::mutex> lock2(b.mtx);
+    std::lock_guard<std::mutex> lock(mtx);
+    std::lock_guard<std::mutex> b_lock(b.mtx);
     #endif
     return values == b.values;
 }
 
 //--------------------------------------//
+
+template <class T> infra_sequence<T> operator+(const infra_sequence<T>& a, const infra_sequence<T>& b) noexcept
+{
+    infra_sequence<T> combine{a};
+    return combine += b;
+}
+template <class T> infra_sequence<T> operator+(const infra_sequence<T>& a, const T& b) noexcept
+{
+    infra_sequence<T> combine{a};
+    return combine += b;
+}
 }
