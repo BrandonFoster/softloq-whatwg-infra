@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.10...3.29)
 project(softloq-whatwg-infra-project VERSION 1.0.0 LANGUAGES CXX)
 option(BUILD_SHARED_LIBS "Generate Shared Library" OFF)
-option(SOFTLOQ_MULTITHREADING "Generate with Multithreading Support" OFF)
 option(SOFTLOQ_WHATWG_INFRA_BUILD_TESTING "Generate Unit-Testing" OFF)
 
 # Build settings
@@ -24,7 +23,6 @@ set(PUBLIC_DEFINITIONS "")
 set(PRIVATE_DEFINITIONS "")
 set(PUBLIC_LINK_LIBRARIES "")
 set(PRIVATE_LINK_LIBRARIES "")
-set(MT_LIBRARY "")
 
 # Library settings
 if(BUILD_SHARED_LIBS)
@@ -32,12 +30,7 @@ if(BUILD_SHARED_LIBS)
     list(APPEND PUBLIC_DEFINITIONS SOFTLOQ_WHATWG_INFRA_USE_API)
     list(APPEND PRIVATE_DEFINITIONS SOFTLOQ_WHATWG_INFRA_BUILD_API)
 endif()
-
-if(SOFTLOQ_MULTITHREADING)
-    include(FindThreads)
-    list(APPEND PUBLIC_DEFINITIONS SOFTLOQ_MULTITHREADING)
-    list(APPEND MT_LIBRARY Threads::Threads)
-endif()
+include(FindThreads)
 
 # Library build
 file(GLOB_RECURSE CXX_FILES src/**.cpp)
@@ -47,11 +40,11 @@ target_include_directories(softloq-whatwg-infra PUBLIC include)
 target_compile_definitions(softloq-whatwg-infra PUBLIC ${PUBLIC_DEFINITIONS})
 target_compile_definitions(softloq-whatwg-infra PRIVATE ${PRIVATE_DEFINITIONS})
 target_link_libraries(softloq-whatwg-infra PUBLIC ${PUBLIC_LINK_LIBRARIES})
-target_link_libraries(softloq-whatwg-infra PRIVATE ${PRIVATE_LINK_LIBRARIES} ${MT_LIBRARY})
+target_link_libraries(softloq-whatwg-infra PRIVATE ${PRIVATE_LINK_LIBRARIES} Threads::Threads)
 
 # Unit testing
 if(BUILD_TESTING AND SOFTLOQ_WHATWG_INFRA_BUILD_TESTING)
     add_executable(softloq-whatwg-infra-test tests/example.cpp)
     add_dependencies(softloq-whatwg-infra-test softloq::whatwg-infra)
-    target_link_libraries(softloq-whatwg-infra-test PRIVATE softloq::whatwg-infra ${MT_LIBRARY})
+    target_link_libraries(softloq-whatwg-infra-test PRIVATE softloq::whatwg-infra Threads::Threads)
 endif()
