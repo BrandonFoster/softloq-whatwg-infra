@@ -17,8 +17,8 @@
 
 namespace softloq::whatwg
 {
-/** @brief WHATWG infra string primitive class (https://infra.spec.whatwg.org/#strings). Thread-safe support when SOFTLOQ_MULTITHREADING is enabled. */
-class infra_string: public infra_primitive_base
+/** @brief WHATWG infra string primitive class (https://infra.spec.whatwg.org/#strings). */
+class infra_string final: public infra_primitive_base
 {
 public:
 
@@ -64,6 +64,7 @@ public:
      * @brief Constructs a WHATWG infra string from another infra string.
      * @param values The infra string that will be moved. */
     SOFTLOQ_WHATWG_INFRA_API infra_string(infra_string&& src) noexcept;
+    /** @brief Default destructor. */
     SOFTLOQ_WHATWG_INFRA_API ~infra_string() noexcept;
 
     //--------------//

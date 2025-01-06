@@ -8,5 +8,9 @@
 
 namespace softloq::whatwg
 {
-SOFTLOQ_WHATWG_INFRA_API std::ostream& operator<<(std::ostream& out, const infra_primitive_base& base) noexcept { base.print(out); return out; }
+SOFTLOQ_WHATWG_INFRA_API std::ostream& operator<<(std::ostream& out, const infra_primitive_base& base) noexcept
+{
+    base.print(out);
+    return out;
+}
 }

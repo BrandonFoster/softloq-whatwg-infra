@@ -8,14 +8,11 @@
 #define SOFTLOQ_WHATWG_INFRA_PRIMITIVE_BOOL_HPP
 
 #include "softloq/whatwg/infra/primitive/base.hpp"
-#ifdef SOFTLOQ_MULTITHREADING
-#include <mutex>
-#endif
 
 namespace softloq::whatwg
 {
-/** @brief WHATWG infra bool primitive class (https://infra.spec.whatwg.org/#booleans). Thread-safe support when SOFTLOQ_MULTITHREADING is enabled. */
-class infra_bool: public infra_primitive_base
+/** @brief WHATWG infra bool primitive class (https://infra.spec.whatwg.org/#booleans). */
+class infra_bool final: public infra_primitive_base
 {
 public:
     // constructors //
@@ -34,6 +31,7 @@ public:
      * @brief Constructs a WHATWG infra bool from another infra bool.
      * @param value The infra bool that will be moved. */
     SOFTLOQ_WHATWG_INFRA_API infra_bool(infra_bool&& src) noexcept;
+    /** @brief Default destructor. */
     SOFTLOQ_WHATWG_INFRA_API ~infra_bool() noexcept;
 
     //--------------//
@@ -74,16 +72,7 @@ public:
     //---------------------------------//
 
 private:
-    bool value;
-    
-    #ifdef SOFTLOQ_MULTITHREADING
-    mutable std::mutex mtx;
-    
-    // used for threadsafe copy construction
-    SOFTLOQ_WHATWG_INFRA_API infra_bool(const infra_bool& src, const std::lock_guard<std::mutex>&) noexcept;
-    // used for threadsafe move construction
-    SOFTLOQ_WHATWG_INFRA_API infra_bool(infra_bool&& src, const std::lock_guard<std::mutex>&) noexcept;
-    #endif  
+    bool data;
 };
 }
 

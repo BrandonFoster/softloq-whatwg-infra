@@ -14,12 +14,13 @@
 
 namespace softloq::whatwg
 {
-/** @brief WHATWG infra byte sequence primitive class (https://infra.spec.whatwg.org/#byte-sequences). Thread-safe support when SOFTLOQ_MULTITHREADING is enabled. */
-class infra_byte_sequence: public infra_sequence<infra_byte>, public infra_primitive_base
+/** @brief WHATWG infra byte sequence primitive class (https://infra.spec.whatwg.org/#byte-sequences). Inheritly thread-safe. */
+class infra_byte_sequence final: public infra_sequence<infra_byte>, public infra_primitive_base
 {
 public:
     // common member types //
 
+    /** @brief The sequence type that is used internally. */
     using sequence_type = infra_sequence<infra_byte>;
 
     //---------------------//
@@ -48,6 +49,7 @@ public:
      * @brief Constructs a WHATWG infra byte sequence from another infra byte sequence.
      * @param values The infra byte sequence that will be moved. */
     SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence(infra_byte_sequence&& src) noexcept;
+    /** @brief Default destructor. */
     SOFTLOQ_WHATWG_INFRA_API ~infra_byte_sequence() noexcept;
 
     //--------------//
@@ -75,9 +77,13 @@ public:
 
     // WHATWG byte sequence member functions //
 
+    /** @brief Returns a space delimited string of each byte character in their 0x notation. */
     SOFTLOQ_WHATWG_INFRA_API std::string byte_string() const noexcept;
+    /** @brief Returns a backtick quoted string of the UTF-8 encoded byte sequence. */
     SOFTLOQ_WHATWG_INFRA_API std::string quoted_string() const noexcept;
+    /** @brief Returns the byte sequence in ascii lowercase format. */
     SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence lowercase() const noexcept;
+    /** @brief Returns the byte sequence in ascii uppercase format. */
     SOFTLOQ_WHATWG_INFRA_API infra_byte_sequence uppercase() const noexcept;
 
     //-------------------------//
@@ -95,8 +101,19 @@ public:
 
     // WHATWG byte sequence comparison functions //
 
+    /**
+     * @brief Applies byte less than algorithm. The algorithm is explained in (https://infra.spec.whatwg.org/#byte-sequences).
+     * @param b The sequence that will be compared.
+     * @note this sequence < b iff this sequence is byte less than b. */
     SOFTLOQ_WHATWG_INFRA_API const bool operator<(const infra_byte_sequence& b) const noexcept;
+    /**
+     * @brief Applies byte less than algorithm. The algorithm is explained in (https://infra.spec.whatwg.org/#byte-sequences).
+     * @param b The sequence that will be compared.
+     * @note this sequence > b iff b is byte less than this sequence. */
     SOFTLOQ_WHATWG_INFRA_API const bool operator>(const infra_byte_sequence& b) const noexcept;
+    /**
+     * @brief Determines if both sequence contains the same sequence of bytes.
+     * @param b The sequence that will be compared. */
     SOFTLOQ_WHATWG_INFRA_API const bool operator==(const infra_byte_sequence& b) const noexcept;
 
     //-------------------------------------------//
@@ -104,8 +121,28 @@ public:
 
 // WHATWG byte sequence comparison functions //
 
+/**
+ * @brief Applies potential prefix algorithm. The algorithm is explained in (https://infra.spec.whatwg.org/#byte-sequences).
+ * 
+ * @param a The sequence that will be checked as the prefix of the entire sequence.
+ * @param b The sequence that will be used as the entire sequence.
+ * @note a is a prefix of b iff the sequence of bytes in a appears at the beginning of b.
+ */
 SOFTLOQ_WHATWG_INFRA_API const bool is_prefix(const infra_byte_sequence& a, const infra_byte_sequence& b) noexcept;
+/**
+ * @brief Applies byte less than algorithm. The algorithm is explained in (https://infra.spec.whatwg.org/#byte-sequences).
+ * 
+ * @param a The sequence that will be compared.
+ * @param b The sequence that will be compared.
+ */
 SOFTLOQ_WHATWG_INFRA_API const bool is_byte_less(const infra_byte_sequence& a, const infra_byte_sequence& b) noexcept;
+/**
+ * @brief Applies case-insensitive equal algorithm. The algorithm is explained in (https://infra.spec.whatwg.org/#byte-sequences).
+ * 
+ * @param a The sequence that will be compared.
+ * @param b The sequence that will be compared.
+ * @note a is iequal to b iff the lowercase sequence of bytes in a is the same as the lowercase sequence of bytes in b.
+ */
 SOFTLOQ_WHATWG_INFRA_API const bool iequal(const infra_byte_sequence& a, const infra_byte_sequence& b) noexcept;
 
 //-------------------------------------------//

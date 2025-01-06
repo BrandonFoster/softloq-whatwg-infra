@@ -11,13 +11,11 @@
 
 #include <initializer_list>
 #include <vector>
-#ifdef SOFTLOQ_MULTITHREADING
 #include <mutex>
-#endif
 
 namespace softloq::whatwg
 {
-/** @brief WHATWG infra sequence data structure class. Thread-safe support when SOFTLOQ_MULTITHREADING is enabled. */
+/** @brief WHATWG infra sequence data structure template class. Internal container access and iterator functions are thread-safe. */
 template <class T> class infra_sequence : public infra_structure_base
 {
 public:
@@ -133,16 +131,11 @@ public:
     //--------------------------------------//
 
 private:
-    std::vector<T> values;
-
-    #ifdef SOFTLOQ_MULTITHREADING
     mutable std::mutex mtx;
+    std::vector<T> data;
     
-    // used for threadsafe copy construction
     infra_sequence(const infra_sequence& src, const std::lock_guard<std::mutex>&) noexcept;
-    // used for threadsafe move construction
     infra_sequence(infra_sequence&& src, const std::lock_guard<std::mutex>&) noexcept;
-    #endif
 };
 
 template <class T> infra_sequence<T> operator+(const infra_sequence<T>& a, const infra_sequence<T>& b) noexcept;
