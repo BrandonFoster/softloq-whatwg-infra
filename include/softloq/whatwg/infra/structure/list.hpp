@@ -93,10 +93,10 @@ public:
 
     // WHATWG list member functions //
 
-    T& front() noexcept;
-    const T& front() const noexcept;
-    T& back() noexcept;
-    const T& back() const noexcept;
+    virtual T& front() noexcept;
+    virtual const T& front() const noexcept;
+    virtual T& back() noexcept;
+    virtual const T& back() const noexcept;
 
     virtual void append(const T& item) noexcept;
     virtual void append(T&& item) noexcept;
@@ -139,7 +139,8 @@ public:
 protected:
     mutable std::mutex mtx;
     std::list<T> data;
-    
+
+private:
     infra_list(const infra_list& src, const std::lock_guard<std::mutex>&) noexcept;
     infra_list(infra_list&& src, const std::lock_guard<std::mutex>&) noexcept;
 };

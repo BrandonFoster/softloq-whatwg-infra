@@ -14,7 +14,7 @@
 namespace softloq::whatwg
 {
 /** @brief WHATWG infra queue data structure class. */
-template <class T> class infra_queue : public infra_list<T>
+template <class T> class infra_queue final: public infra_list<T>
 {
 public:
     // constructors //
