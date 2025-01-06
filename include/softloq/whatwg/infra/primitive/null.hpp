@@ -11,8 +11,8 @@
 
 namespace softloq::whatwg
 {
-/** @brief WHATWG infra null primitive class (https://infra.spec.whatwg.org/#nulls). Thread-safe support when SOFTLOQ_MULTITHREADING is enabled. */
-class infra_null: public infra_primitive_base
+/** @brief WHATWG infra null primitive class (https://infra.spec.whatwg.org/#nulls). */
+class infra_null final: public infra_primitive_base
 {
 public:
     // WHATWG primitive base overrides //

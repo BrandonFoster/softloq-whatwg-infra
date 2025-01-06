@@ -10,8 +10,13 @@ namespace softloq::whatwg
 {
 // WHATWG primitive base overrides //
 
-SOFTLOQ_WHATWG_INFRA_API const infra_primitive_type infra_null::primitive_type() const noexcept { return infra_primitive_type::infra_null; }
-SOFTLOQ_WHATWG_INFRA_API void infra_null::print(std::ostream& out) const noexcept {}
+SOFTLOQ_WHATWG_INFRA_API const infra_primitive_type infra_null::primitive_type() const noexcept
+{
+    return infra_primitive_type::infra_null;
+}
+SOFTLOQ_WHATWG_INFRA_API void infra_null::print(std::ostream& out) const noexcept
+{
+}
 
 //---------------------------------//
 }

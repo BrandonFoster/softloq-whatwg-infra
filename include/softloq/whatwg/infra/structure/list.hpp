@@ -12,13 +12,11 @@
 #include <initializer_list>
 #include <functional>
 #include <list>
-#ifdef SOFTLOQ_MULTITHREADING
 #include <mutex>
-#endif
 
 namespace softloq::whatwg
 {
-/** @brief WHATWG infra sequence data structure class (https://infra.spec.whatwg.org/#lists). Thread-safe support when SOFTLOQ_MULTITHREADING is enabled. */
+/** @brief WHATWG infra sequence data structure template class (https://infra.spec.whatwg.org/#lists). Internal container access and iterator functions are thread-safe. */
 template <class T> class infra_list : public infra_structure_base
 {
 public:
@@ -139,16 +137,11 @@ public:
     //---------------------------------//
 
 protected:
-    std::list<T> values;
-
-    #ifdef SOFTLOQ_MULTITHREADING
     mutable std::mutex mtx;
+    std::list<T> data;
     
-    // used for threadsafe copy construction
     infra_list(const infra_list& src, const std::lock_guard<std::mutex>&) noexcept;
-    // used for threadsafe move construction
     infra_list(infra_list&& src, const std::lock_guard<std::mutex>&) noexcept;
-    #endif
 };
 }
 

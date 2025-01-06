@@ -8,14 +8,11 @@
 #define SOFTLOQ_WHATWG_INFRA_PRIMITIVE_BYTE_HPP
 
 #include "softloq/whatwg/infra/primitive/uint.hpp"
-#ifdef SOFTLOQ_MULTITHREADING
-#include <mutex>
-#endif
 
 namespace softloq::whatwg
 {
-/** @brief WHATWG infra byte primitive class (https://infra.spec.whatwg.org/#bytes). Thread-safe support when SOFTLOQ_MULTITHREADING is enabled. */
-class infra_byte: public infra_primitive_base
+/** @brief WHATWG infra byte primitive class (https://infra.spec.whatwg.org/#bytes). */
+class infra_byte final: public infra_primitive_base
 {
 public:
     // constructors //
@@ -42,6 +39,7 @@ public:
      * @brief Constructs a WHATWG infra byte from another infra byte.
      * @param value The infra byte that will be moved. */
     SOFTLOQ_WHATWG_INFRA_API infra_byte(infra_byte&& src) noexcept;
+    /** @brief Default destructor. */
     SOFTLOQ_WHATWG_INFRA_API ~infra_byte() noexcept;
 
     //--------------//
@@ -89,17 +87,9 @@ public:
     SOFTLOQ_WHATWG_INFRA_API void print(std::ostream& out) const noexcept override;
 
     //---------------------------------//
+    
 private:
-    infra_uint8 value;
-    
-    #ifdef SOFTLOQ_MULTITHREADING
-    mutable std::mutex mtx;
-    
-    // used for threadsafe copy construction
-    SOFTLOQ_WHATWG_INFRA_API infra_byte(const infra_byte& src, const std::lock_guard<std::mutex>&) noexcept;
-    // used for threadsafe move construction
-    SOFTLOQ_WHATWG_INFRA_API infra_byte(infra_byte&& src, const std::lock_guard<std::mutex>&) noexcept;
-    #endif  
+    infra_uint8 data;
 };
 }
 
